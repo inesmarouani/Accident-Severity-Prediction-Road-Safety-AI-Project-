@@ -295,30 +295,25 @@ missingno>=0.5.0
 ```
 accident-severity-prediction/
 │
+├── back/
+│   ├── Dockerfile
+│   ├── main.py
+│   ├── requirements.txt
+│   └── models/
+│
+├── front/
+│   ├── Dockerfile
+│   ├── dash_app.py
+│   ├── requirements.txt
+│   └── data/
+│
 ├── data/
-│   ├── caract/                   #  CSV files (2021-2024)
-│   ├── lieux/                    #  CSV files (2021-2024)
-│   ├── vehicules/                #  CSV files (2021-2024)
-│   ├── usagers/                  #  CSV files (2021-2024)
-│   ├── accidents_clean/                   
+│   ├── carac-2021.csv ...
+│   └── ...
 │
 ├── notebooks/
-│   ├── accidents_routiers.ipynb
-│
-├── api/
-│   ├── dash_app.py          # Front-end
-│   ├── main.py              # Back-end
-│
-├── models/
-│   ├── label_encoder.pkl         
-│   └── pipeline.pkl              
-│   └── pipeline_binaire.pkl      # Trained LightGBM model
-│   └── label_encode_binaire.pkl  
-│
-├── requirements.txt            # Python dependencies
-├── README.md                   # This file
-├── LICENSE                     # MIT License
-└── .gitignore
+├── docker-compose.yml
+└── README.md
 ```
 
 ---
