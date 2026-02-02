@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  back:
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    container_name: accident_severity_back
+    ports:
+      - "8000:8000"
+
+  front:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    container_name: accident_severity_front
+    ports:
+      - "8050:8050"
+    depends_on:
+      - back
+     

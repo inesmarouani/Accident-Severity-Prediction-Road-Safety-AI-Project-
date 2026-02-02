@@ -345,7 +345,7 @@ def predict(
 
     try:
         response = requests.post(
-            "http://127.0.0.1:8000/predict",
+            url="http://back:8000/predict",
             json=payload,
             timeout=10
         )
@@ -384,7 +384,7 @@ def predict(
 # =============================
 # Dashboard
 # =============================
-df = pd.read_csv("../data/accidents_clean.csv")
+df = pd.read_csv("data/accidents_clean.csv")
 
 # renommer la colonne
 df.rename(columns={"grav_accident": "gravite"}, inplace=True)
@@ -520,5 +520,6 @@ def update_dashboard(dep, saison, gravite):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=8050, debug=False)
+
 

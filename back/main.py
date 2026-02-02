@@ -16,8 +16,8 @@ app = FastAPI(title="Accident Severity API")
 
 BASE_DIR = Path(__file__).resolve().parent
 
-pipeline = joblib.load(BASE_DIR / "../models/pipeline_binaire.pkl")
-label_encoder = joblib.load(BASE_DIR / "../models/label_encoder_binaire.pkl")
+pipeline = joblib.load(BASE_DIR / "models/pipeline_binaire.pkl")
+label_encoder = joblib.load(BASE_DIR / "models/label_encoder_binaire.pkl")
 
 # =============================
 # Schéma des données d'entrée
@@ -64,23 +64,14 @@ def root():
 @app.post("/predict")
 def predict(data: AccidentInput):
     try:
-
         df = pd.DataFrame([data.dict()])
 
-        # Types exacts du X_train
-        df["trajet"] = df["trajet"].astype(float)
-        df["vma"] = df["vma"].astype(float)
-        df["lum"] = df["lum"].astype(float)
-        df["atm"] = df["atm"].astype(float)
-        df["saison"] = df["saison"].astype(str)
-        df["age_cat"] = df["age_cat"].astype("category")
-
-        print("Colonnes reçues :", df.columns.tolist())
-        print("Colonnes attendues :", pipeline.feature_names_in_)
-
+        # mettre l'ordre des colonnes attendu
+        df = df[list(pipeline.feature_names_in_)]
 
         y_pred = pipeline.predict(df)
         return {"gravite_predite": int(y_pred[0])}
+
     except Exception as e:
-        # Affiche l'erreur complète dans la console
         raise e
+
