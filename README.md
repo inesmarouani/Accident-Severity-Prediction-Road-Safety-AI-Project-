@@ -232,30 +232,30 @@ missingno>=0.5.0
 
 
 ┌─────────────────────────────────────────────────────────────┐
-│                        User Interface                        │
+│                        User Interface                       │
 │                     (Web Browser)                           │
 └────────────────┬────────────────────────────────────────────┘
                  │
                  ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                    Dash Dashboard (Port 8050)                │
-│  ┌──────────────────────┐    ┌─────────────────────────┐   │
-│  │  Visualization Tab   │    │    Prediction Tab       │   │
-│  │  - Maps              │    │    - Input Form         │   │
-│  │  - Charts            │    │    - Real-time Results  │   │
-│  │  - Metrics           │    │    - Explanations       │   │
-│  └──────────────────────┘    └─────────────────────────┘   │
+│                    Dash Dashboard (Port 8050)               │
+│  ┌──────────────────────┐    ┌─────────────────────────┐    │
+│  │  Visualization Tab   │    │    Prediction Tab       │    │
+│  │  - Maps              │    │    - Input Form         │    │
+│  │  - Charts            │    │    - Real-time Results  │    │
+│  │  - Metrics           │    │    - Explanations       │    │
+│  └──────────────────────┘    └─────────────────────────┘    │
 └────────────────┬────────────────────────────────────────────┘
                  │
                  ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                  FastAPI REST API (Port 8000)                │
+│                  FastAPI REST API (Port 8000)               │
 │  ┌──────────────────────────────────────────────────────┐   │
 │  │  Endpoints:                                          │   │
-│  │  - POST /predict (single)                           │   │
-│  │  - POST /predict/batch                              │   │
-│  │  - GET /model/info                                  │   │
-│  │  - GET /health                                      │   │
+│  │  - POST /predict (single)                            │   │
+│  │  - POST /predict/batch                               │   │
+│  │  - GET /model/info                                   │   │
+│  │  - GET /health                                       │   │
 │  └──────────────────────────────────────────────────────┘   │
 └────────────────┬────────────────────────────────────────────┘
                  │
@@ -295,32 +295,34 @@ missingno>=0.5.0
 ```
 accident-severity-prediction/
 │
-├── data/
-│   ├── caract/                   #  CSV files (2021-2024)
-│   ├── lieux/                    #  CSV files (2021-2024)
-│   ├── vehicules/                #  CSV files (2021-2024)
-│   ├── usagers/                  #  CSV files (2021-2024)
-│   ├── accidents_clean/                   
+├── back/
+│   ├── models/
+│   │   ├── label_encoder.pkl
+│   │   ├── pipeline.pkl
+│   │   ├── pipeline_binaire.pkl
+│   │   └── label_encoder_binaire.pkl
+│   ├── Dockerfile
+│   ├── main.py
+│   └── requirements.txt
+│
+├── front/
+│   ├── data/
+│   │   └── accidents_clean.csv
+│   ├── Dockerfile
+│   ├── dash_app.py
+│   └── requirements.txt
+│
+├── data/                  # CSV source
+│   ├── carac-2021.csv
+│   ├── lieux-2021.csv
+│   └── ...
 │
 ├── notebooks/
-│   ├── accidents_routiers.ipynb
+│   └── accidents_routiers.ipynb
 │
-├── api/
-│   ├── dash_app.py          # Front-end
-│   ├── main.py              # Back-end
-│
-├── models/
-│   ├── label_encoder.pkl         
-│   └── pipeline.pkl              
-│   └── pipeline_binaire.pkl      # Trained LightGBM model
-│   └── label_encode_binaire.pkl  
-│
-├── requirements.txt            # Python dependencies
-├── README.md                   # This file
-├── LICENSE                     # MIT License
+├── docker-compose.yml
+├── README.md
 └── .gitignore
-```
-
 ---
 
 ## ✨ Key Features
