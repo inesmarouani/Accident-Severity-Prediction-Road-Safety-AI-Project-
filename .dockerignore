@@ -20,6 +20,9 @@ data/raw/
 .git/
 .gitignore
 
+# Fichier d'environnement secret
+.env
+
 # Documentation
 README.md
 

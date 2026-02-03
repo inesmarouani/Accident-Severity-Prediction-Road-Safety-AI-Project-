@@ -20,8 +20,8 @@ app = FastAPI(title="Accident Severity API")
 
 BASE_DIR = Path(__file__).resolve().parent
 
-pipeline = joblib.load(BASE_DIR / "models/pipeline_binaire.pkl")
-label_encoder = joblib.load(BASE_DIR / "models/label_encoder_binaire.pkl")
+pipeline = joblib.load(BASE_DIR / "models_trained/pipeline_binaire.pkl")
+label_encoder = joblib.load(BASE_DIR / "models_trained/label_encoder_binaire.pkl")
 
 # =============================
 # Startup

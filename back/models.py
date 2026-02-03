@@ -1,5 +1,5 @@
 from sqlmodel import Field, SQLModel
-from typing import Annotated, Optional
+from typing import Optional
 from pydantic import BaseModel
 
 
