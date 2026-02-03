@@ -520,7 +520,6 @@ python dash_app.py
 - [ ] Geospatial features (distance to hospital, road quality index)
 
 ### Deployment
-- [ ] Migrate SQLite to PostgreSQL for production (if any local SQLite artifacts remain)
 - [ ] Add monitoring (Prometheus + Grafana)
 - [ ] CI/CD pipeline for automatic image rebuilds
 - [ ] Cloud deployment (AWS / GCP / Azure)
@@ -530,25 +529,6 @@ python dash_app.py
 - [ ] Regional analysis (department-level patterns)
 - [ ] Temporal trends analysis (year-over-year changes)
 - [ ] Cost-benefit analysis of prevention measures
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/YourFeature`)
-3. Commit your changes (`git commit -m 'Add YourFeature'`)
-4. Push to the branch (`git push origin feature/YourFeature`)
-5. Open a Pull Request
-
-### Contribution Guidelines
-- Follow PEP 8 style guide
-- Add unit tests for new features
-- Update documentation accordingly
-- Ensure all tests pass before submitting PR
-
 ---
 
 ## 📄 License
