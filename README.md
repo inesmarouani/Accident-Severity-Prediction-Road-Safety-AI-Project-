@@ -302,6 +302,8 @@ accident-severity-prediction/
 │   │   ├── pipeline_binaire.pkl
 │   │   └── label_encoder_binaire.pkl
 │   ├── Dockerfile
+│   ├── database.py
+│   ├── models.py
 │   ├── main.py
 │   └── requirements.txt
 │
