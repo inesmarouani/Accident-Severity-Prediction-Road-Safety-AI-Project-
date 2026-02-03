@@ -44,12 +44,14 @@ COPY . /app
 # ============================================
 # ÉTAPE 5: Configuration finale
 # ============================================
-#créer un utilisateur non root
-RUN useradd -m -u 1000 dataeng && \
-    chown -R dataeng:dataeng /app
+RUN useradd -m -u 1000 appuser
 
-#changer l'utilisateur c
-USER dataeng
+# Donner les permissions sur /app à appuser
+RUN chown -R appuser:appuser /app
+
+
+#changer l'utilisateur 
+USER appuser
 
 # Exposer le port sur lequel l'application va s'exécuter
 EXPOSE 8050 

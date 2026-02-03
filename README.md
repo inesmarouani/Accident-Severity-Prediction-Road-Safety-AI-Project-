@@ -318,7 +318,9 @@ accident-severity-prediction/
 │   └── ...
 │
 ├── notebooks/
-│   └── accidents_routiers.ipynb
+│   ├── data_cleaning.ipynb
+│   ├── EDA+feature_engineering.ipynb
+│   ├── Modeling.ipynb
 │
 ├── docker-compose.yml
 ├── README.md
@@ -351,53 +353,6 @@ accident-severity-prediction/
 - Modular code structure
 - Reusable preprocessing pipeline
 - Model serialization for deployment
-
----
-
-## 🔮 Future Improvements
-
-### Model Enhancement
-- [ ] Threshold tuning to optimize precision/recall trade-off
-- [ ] Test ensemble methods (stacking, voting)
-- [ ] Explore CatBoost and other gradient boosting variants
-- [ ] Implement focal loss for better class imbalance handling
-
-### Feature Engineering
-- [ ] Add temporal features (hour of day, rush hour indicator)
-- [ ] Create interaction features (agg × vma, lum × atm)
-- [ ] Include external data (population density, traffic volume)
-- [ ] Geospatial features (distance to hospital, road quality index)
-
-### Deployment
-- [ ] Build REST API for real-time predictions
-- [ ] Create dashboard for visualization
-- [ ] Integrate with road safety databases
-- [ ] Develop mobile application for field use
-
-### Analysis
-- [ ] Deep dive into false positives/negatives
-- [ ] Regional analysis (department-level patterns)
-- [ ] Temporal trends analysis (year-over-year changes)
-- [ ] Cost-benefit analysis of prevention measures
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/YourFeature`)
-3. Commit your changes (`git commit -m 'Add YourFeature'`)
-4. Push to the branch (`git push origin feature/YourFeature`)
-5. Open a Pull Request
-
-### Contribution Guidelines
-- Follow PEP 8 style guide
-- Add unit tests for new features
-- Update documentation accordingly
-- Ensure all tests pass before submitting PR
-
 ---
 
 ## 📄 License

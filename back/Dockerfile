@@ -44,6 +44,14 @@ COPY . /app
 # ============================================
 # ÉTAPE 5: Configuration finale
 # ============================================
+RUN useradd -m -u 1000 appuser
+
+# Donner les permissions sur /app à appuser
+RUN chown -R appuser:appuser /app
+
+
+#changer l'utilisateur 
+USER appuser
 
 # Exposer le port sur lequel l'application va s'exécuter
 EXPOSE 8000 

@@ -14,9 +14,9 @@ OPTIONS = {
         {"label": "Oui", "value": 1}
     ],
     "col": [
-        { "label": "1 – Deux véhicules - frontale ",           "value": 1 },
-        { "label": "2 – Deux véhicules – par l’arrière",         "value": 2 },
-        { "label": "3 – Deux véhicules – par le coté",         "value": 3 },
+        { "label": "Deux véhicules - frontale ",           "value": 1 },
+        { "label": "Deux véhicules – par l’arrière",         "value": 2 },
+        { "label": "Deux véhicules – par le coté",         "value": 3 },
         { "label": "Trois véhicules et plus – en chaîn", "value": 4 },
         { "label": "Trois véhicules et plus - collisions multiples",      "value": 5 },
         { "label": " Autre collision",                    "value": 6 },
