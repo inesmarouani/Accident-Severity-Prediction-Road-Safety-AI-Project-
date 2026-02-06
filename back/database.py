@@ -1,9 +1,8 @@
 import os
 from typing import Annotated
-from sqlmodel import Session, SQLModel, create_engine
-from fastapi import Depends
 
-from models import Accident  # importe le modèle pour que SQLModel le connaisse
+from fastapi import Depends
+from sqlmodel import Session, SQLModel, create_engine
 
 # =============================
 # Engine + connexion

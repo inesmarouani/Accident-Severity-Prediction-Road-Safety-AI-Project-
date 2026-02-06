@@ -1,6 +1,6 @@
-from sqlmodel import Field, SQLModel
-from typing import Optional
+
 from pydantic import BaseModel
+from sqlmodel import Field, SQLModel
 
 
 # Schéma des données d'entrée
@@ -24,11 +24,11 @@ class AccidentInput(BaseModel):
 
 # Modèle SQLModel : table DB + schéma de retour
 class Accident(SQLModel, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)  # clé primaire
-    nb_usagers: int 
+    id: int | None = Field(default=None, primary_key=True)  # clé primaire
+    nb_usagers: int
     is_passagers: int
-    age_cat: str 
-    nb_proteges: int 
+    age_cat: str
+    nb_proteges: int
     trajet: float
     vma: float
     lum: float
@@ -40,4 +40,4 @@ class Accident(SQLModel, table=True):
     circ: float
     localisation_pieton: int
     nbv : float
-    gravite_predite: Optional[int] = None  # résultat de la prédiction
+    gravite_predite: int | None = None  # résultat de la prédiction

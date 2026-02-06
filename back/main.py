@@ -1,16 +1,14 @@
-from fastapi import FastAPI, status, HTTPException, Query, Request
+from pathlib import Path
+from typing import Annotated
 
 import joblib
 import pandas as pd
-from pathlib import Path
+from database import SessionDep, create_db_and_tables
+from fastapi import FastAPI, HTTPException, Query, Request, status
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
-from sqlmodel import select
-from typing import Annotated
-
-from database import create_db_and_tables, SessionDep
 from models import Accident, AccidentInput
-
+from sqlmodel import select
 
 # =============================
 # Initialisation
@@ -32,7 +30,7 @@ label_encoder = joblib.load(BASE_DIR / "models_trained/label_encoder_binaire.pkl
 
 
 #Créer un BDD au démarrage
- 
+
 @app.on_event("startup")
 def on_startup():
     create_db_and_tables()
@@ -82,8 +80,8 @@ def predict(data: AccidentInput, session: SessionDep):
         return accident
 
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-    
+        raise HTTPException(status_code=500, detail=str(e)) from e
+
 
 #lire tous les accidents
 @app.get("/accidents/")
