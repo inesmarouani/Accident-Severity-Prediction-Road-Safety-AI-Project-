@@ -1,4 +1,4 @@
-from fastapi import FastAPI, status, Depends, HTTPException, Query, Request
+from fastapi import FastAPI, status, HTTPException, Query, Request
 
 import joblib
 import pandas as pd
