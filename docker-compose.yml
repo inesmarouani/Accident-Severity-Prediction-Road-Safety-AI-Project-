@@ -1,4 +1,3 @@
-version: "3.8"
 
 services:
   db:
@@ -11,7 +10,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U user -d accidents"]
       interval: 5s
@@ -21,7 +20,7 @@ services:
       - app-network
   back:
     #build:
-      #context: ./back
+     # context: ./back
       #dockerfile: Dockerfile
     container_name: accident_severity_back
     image: inesmarouani/accident-back:latest
@@ -37,20 +36,29 @@ services:
       db:
         condition: service_healthy
     volumes:
-      - ./back/data:/app/data   # dossier partagé entre hôte et conteneur
+      - ./back/data:/code/app   # dossier partagé entre hôte et conteneur
+      - ./back/models_trained:/code/models_trained
+      # Volume pour uv cache (optionnel, améliore les rebuild)
+      - uv-cache:/root/.cache/uv    
     networks:
       - app-network
 
   front:
     #build:
-      #context: ./front
+     # context: ./front
       #dockerfile: Dockerfile
     container_name: accident_severity_front
     image: inesmarouani/accident-front:latest
     ports:
       - "8050:8050"
+    environment:
+      - API_BASE_URL=http://back:8000
+      - DEBUG=False
     depends_on:
       - back
+    volumes:
+    - ./front/src:/app/src
+    - ./front/data:/app/data
     networks:
       - app-network
 
@@ -59,4 +67,5 @@ networks:
     driver: bridge
 
 volumes:
-  db_data:
+  postgres_data:
+  uv-cache:
