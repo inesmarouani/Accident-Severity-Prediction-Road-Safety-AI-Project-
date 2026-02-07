@@ -1,64 +1,57 @@
 # ============================================
-# ÉTAPE 1: Image de base
+# Image de base
 # ============================================
-
 FROM python:3.12-slim
 
-#Métadonnées de l'image
 LABEL maintainer="ines.marouani69@gmail.com"
 LABEL version="1.0"
-LABEL description="Image Docker pour une application Python 3.14 avec Flask et requests"
+LABEL description="FastAPI backend - Accident Severity"
 
 # ============================================
-# ÉTAPE 2: Configuration de l'environnement
+# Dépendances système
 # ============================================
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    gcc \
+    python3-dev \
+    libpq-dev \
+    postgresql-client \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
-# Variables d'environnement
+# Installer uv
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 
-# Définir le répertoire de travail
+# ============================================
+# Workdir
+# ============================================
 WORKDIR /app
 
 # ============================================
-# ÉTAPE 3: Installation des dépendances
+# Dépendances Python (cache Docker)
 # ============================================
+COPY pyproject.toml uv.lock README.md ./
 
-#installer les dépendances système nécessaires
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    gcc \
-    postgresql-client \
-    && rm -rf /var/lib/apt/lists/*
-
-# Copier requirements.txt d'abord (cache Docker)
-COPY requirements.txt .
-
-# Installer les dépendances Python
-RUN pip install --no-cache-dir -r requirements.txt
+RUN uv sync --frozen --no-dev
 
 # ============================================
-# ÉTAPE 4: Copie du code source
+# Copier le code
 # ============================================
-# Copier le code source de l'application dans le conteneur
-COPY . /app
-
+COPY app /app/app
+COPY models_trained /app/models_trained
 
 # ============================================
-# ÉTAPE 5: Configuration finale
+# Sécurité : user non-root
 # ============================================
-RUN useradd -m -u 1000 appuser
-
-# Donner les permissions sur /app à appuser
-RUN chown -R appuser:appuser /app
-
-
-#changer l'utilisateur 
+RUN useradd -m appuser && chown -R appuser:appuser /app
 USER appuser
 
-# Exposer le port sur lequel l'application va s'exécuter
-EXPOSE 8000 
+# ============================================
+# Runtime
+# ============================================
+EXPOSE 8000
 
-#Healthcheck
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s \
-    CMD python -c "import sys; sys.exit(0)"
+HEALTHCHECK --interval=30s --timeout=5s \
+  CMD curl -f http://localhost:8000/health || exit 1
 
-# Commande pour démarrer l'application
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uv", "run", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
