@@ -37,9 +37,9 @@ class MLService:
         
         try:
             df = pd.DataFrame([data])
-            df = df[list(self.pipeline.feature_names_in_)]
+            df = df[list(self.pipeline.feature_names_in_)]  # type: ignore[union-attr]
             
-            y_pred = self.pipeline.predict(df)
+            y_pred = self.pipeline.predict(df)  # type: ignore[union-attr]
             gravite = int(y_pred[0])
             
             logger.info(f"✅ Prédiction: {gravite}")
