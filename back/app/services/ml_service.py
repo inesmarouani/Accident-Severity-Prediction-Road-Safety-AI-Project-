@@ -1,7 +1,9 @@
 # app/services/ml_service.py
+import logging
+
 import joblib
 import pandas as pd
-import logging
+
 from app.core.config import settings
 
 logger = logging.getLogger(__name__)

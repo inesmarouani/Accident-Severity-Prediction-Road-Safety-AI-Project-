@@ -1,7 +1,8 @@
 from app.models.accident import Accident
-from app.schemas.accident import AccidentInput
 from app.repositories.accident_repository import AccidentRepository
+from app.schemas.accident import AccidentInput
 from app.services.ml_service import ml_service
+
 
 class AccidentService:
     """Service métier pour la gestion des accidents"""

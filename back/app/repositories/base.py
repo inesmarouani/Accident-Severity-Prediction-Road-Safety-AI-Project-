@@ -20,8 +20,9 @@ Architecture:
     Database
 """
 
-from typing import Generic, TypeVar, Type, List, Optional
-from sqlmodel import Session, select, SQLModel, col
+from typing import Generic, List, Optional, Type, TypeVar
+
+from sqlmodel import Session, SQLModel, col, select
 
 # TypeVar permet de créer des génériques type-safe
 # Exemple: BaseRepository[Accident] garantit que toutes les méthodes

@@ -2,10 +2,10 @@ from fastapi import FastAPI, Request, status
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
-from app.core.config import settings
-from app.core.logging import setup_logging, logger
-from app.database import create_db_and_tables
 from app.api.v1.api import api_router
+from app.core.config import settings
+from app.core.logging import logger, setup_logging
+from app.database import create_db_and_tables
 
 # Configurer le logging
 setup_logging()

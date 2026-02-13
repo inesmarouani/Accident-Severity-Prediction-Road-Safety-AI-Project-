@@ -13,6 +13,7 @@ Convention de nommage:
 """
 
 import pytest
+
 from app.models.accident import Accident
 
 
