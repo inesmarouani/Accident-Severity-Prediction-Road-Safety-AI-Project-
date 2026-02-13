@@ -7,9 +7,9 @@ from app.models.base import TimestampMixin
 
 class Accident(TimestampMixin, table=True):
     """Modèle de la table accidents en base de données"""
-    
+
     __tablename__ = "accidents"
-    
+
     id: Optional[int] = Field(default=None, primary_key=True)
     nb_usagers: int
     is_passagers: int

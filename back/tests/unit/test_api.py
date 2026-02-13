@@ -12,7 +12,7 @@ Tests d'intégration:
 
 class TestPredictEndpoint:
     """Tests pour POST /api/v1/accidents/predict"""
-    
+
     def test_predict_success(self, client, sample_accident_data):
         """
         Test: Prédiction réussie
@@ -20,17 +20,14 @@ class TestPredictEndpoint:
         When: POST /predict
         Then: 201 avec gravite_predite
         """
-        response = client.post(
-            "/api/v1/accidents/predict",
-            json=sample_accident_data
-        )
-        
+        response = client.post("/api/v1/accidents/predict", json=sample_accident_data)
+
         assert response.status_code == 201
         data = response.json()
         assert "gravite_predite" in data
         assert data["gravite_predite"] in [0, 1]
         assert "id" in data
-    
+
     def test_predict_missing_field(self, client, sample_accident_data):
         """
         Test: Champ manquant
@@ -40,14 +37,11 @@ class TestPredictEndpoint:
         """
         incomplete_data = {**sample_accident_data}
         del incomplete_data["nb_usagers"]
-        
-        response = client.post(
-            "/api/v1/accidents/predict",
-            json=incomplete_data
-        )
-        
+
+        response = client.post("/api/v1/accidents/predict", json=incomplete_data)
+
         assert response.status_code == 422
-    
+
     def test_predict_invalid_type(self, client, sample_accident_data):
         """
         Test: Type invalide
@@ -56,18 +50,15 @@ class TestPredictEndpoint:
         Then: 422 Validation Error
         """
         invalid_data = {**sample_accident_data, "nb_usagers": "deux"}
-        
-        response = client.post(
-            "/api/v1/accidents/predict",
-            json=invalid_data
-        )
-        
+
+        response = client.post("/api/v1/accidents/predict", json=invalid_data)
+
         assert response.status_code == 422
 
 
 class TestGetAccidentsEndpoint:
     """Tests pour GET /api/v1/accidents/"""
-    
+
     def test_get_accidents_empty(self, client):
         """
         Test: Récupérer accidents sur DB vide
@@ -76,10 +67,10 @@ class TestGetAccidentsEndpoint:
         Then: 200 avec liste vide
         """
         response = client.get("/api/v1/accidents/")
-        
+
         assert response.status_code == 200
         assert response.json() == []
-    
+
     def test_get_accidents_with_data(self, client, sample_accident_data):
         """
         Test: Récupérer accidents
@@ -90,13 +81,13 @@ class TestGetAccidentsEndpoint:
         # Créer 2 accidents
         for _ in range(2):
             client.post("/api/v1/accidents/predict", json=sample_accident_data)
-        
+
         response = client.get("/api/v1/accidents/")
-        
+
         assert response.status_code == 200
         data = response.json()
         assert len(data) == 2
-    
+
     def test_get_accidents_pagination(self, client, sample_accident_data):
         """
         Test: Pagination
@@ -107,9 +98,9 @@ class TestGetAccidentsEndpoint:
         # Créer 5 accidents
         for _ in range(5):
             client.post("/api/v1/accidents/predict", json=sample_accident_data)
-        
+
         response = client.get("/api/v1/accidents/?offset=2&limit=2")
-        
+
         assert response.status_code == 200
         data = response.json()
         assert len(data) == 2
@@ -117,7 +108,7 @@ class TestGetAccidentsEndpoint:
 
 class TestGetAccidentByIdEndpoint:
     """Tests pour GET /api/v1/accidents/{id}"""
-    
+
     def test_get_accident_success(self, client, sample_accident_data):
         """
         Test: Récupérer un accident existant
@@ -126,19 +117,16 @@ class TestGetAccidentByIdEndpoint:
         Then: 200 avec l'accident
         """
         # Créer un accident
-        create_response = client.post(
-            "/api/v1/accidents/predict",
-            json=sample_accident_data
-        )
+        create_response = client.post("/api/v1/accidents/predict", json=sample_accident_data)
         accident_id = create_response.json()["id"]
-        
+
         # Récupérer l'accident
         response = client.get(f"/api/v1/accidents/{accident_id}")
-        
+
         assert response.status_code == 200
         data = response.json()
         assert data["id"] == accident_id
-    
+
     def test_get_accident_not_found(self, client):
         """
         Test: Récupérer un accident inexistant
@@ -147,13 +135,13 @@ class TestGetAccidentByIdEndpoint:
         Then: 404 Not Found
         """
         response = client.get("/api/v1/accidents/99999")
-        
+
         assert response.status_code == 404
 
 
 class TestHealthEndpoint:
     """Tests pour GET /health"""
-    
+
     def test_health_check(self, client):
         """
         Test: Health check
@@ -162,7 +150,7 @@ class TestHealthEndpoint:
         Then: 200 avec status healthy
         """
         response = client.get("/health")
-        
+
         assert response.status_code == 200
         data = response.json()
         assert data["status"] == "healthy"

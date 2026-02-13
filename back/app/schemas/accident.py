@@ -3,7 +3,7 @@ from pydantic import BaseModel
 
 class AccidentInput(BaseModel):
     """Schéma pour les données d'entrée de prédiction"""
-    
+
     nb_usagers: int
     is_passagers: int
     age_cat: str
@@ -20,9 +20,10 @@ class AccidentInput(BaseModel):
     localisation_pieton: int
     nbv: float
 
+
 class AccidentResponse(BaseModel):
     """Schéma pour la réponse de prédiction"""
-    
+
     id: int
     nb_usagers: int
     is_passagers: int

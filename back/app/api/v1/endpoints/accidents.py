@@ -17,15 +17,15 @@ router = APIRouter()
 def predict_accident(data: AccidentInput, session: SessionDep):
     """Prédit la gravité d'un accident et le sauvegarde en base"""
     logger.info("📥 Nouvelle requête de prédiction")
-    
+
     try:
         repository = AccidentRepository(session)
         service = AccidentService(repository)
         result = service.predict_and_save(data)
-        
+
         logger.info(f"✅ Prédiction - ID: {result.id}, Gravité: {result.gravite_predite}")
         return result
-        
+
     except Exception as e:
         logger.error(f"❌ Erreur: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e)) from e
