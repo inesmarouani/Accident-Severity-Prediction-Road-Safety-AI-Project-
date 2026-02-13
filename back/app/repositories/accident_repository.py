@@ -1,4 +1,5 @@
 from sqlmodel import Session
+
 from app.models.accident import Accident
 from app.repositories.base import BaseRepository
 

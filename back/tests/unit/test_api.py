@@ -8,8 +8,6 @@ Tests d'intégration:
 - Moins nombreux mais plus réalistes
 """
 
-import pytest
-from fastapi.testclient import TestClient
 
 
 class TestPredictEndpoint:

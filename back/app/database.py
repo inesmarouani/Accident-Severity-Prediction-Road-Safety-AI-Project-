@@ -13,12 +13,14 @@ Principe SOLID: Single Responsibility
 Tout ce qui touche à la DB est ici, pas ailleurs.
 """
 
-from typing import Annotated, Generator
+import logging
 from contextlib import contextmanager
+from typing import Annotated, Generator
+
 from fastapi import Depends
 from sqlmodel import Session, SQLModel, create_engine
+
 from app.core.config import settings
-import logging
 
 logger = logging.getLogger(__name__)
 

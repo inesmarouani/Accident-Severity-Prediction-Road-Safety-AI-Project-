@@ -18,10 +18,11 @@ Pour l'instant, ces fonctionnalités ne sont pas nécessaires car:
 - Une limitation du nombre de prédictions par utilisateur
 """
 
-from passlib.context import CryptContext
-from datetime import datetime, timedelta
-from typing import Optional
 import secrets
+from datetime import timedelta
+from typing import Optional
+
+from passlib.context import CryptContext
 
 # Context pour le hashing de mots de passe
 # Utilise bcrypt, un algorithme sécurisé et lent (protection contre brute force)

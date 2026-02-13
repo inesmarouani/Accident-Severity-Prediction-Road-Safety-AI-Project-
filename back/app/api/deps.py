@@ -12,9 +12,11 @@ Au lieu de créer des objets manuellement dans chaque endpoint,
 FastAPI les injecte automatiquement.
 """
 
-from typing import Annotated, Generator
-from fastapi import Depends, HTTPException, Header, Query, status
+from typing import Annotated
+
+from fastapi import Depends, Header, HTTPException, Query, status
 from sqlmodel import Session
+
 from app.database import get_session
 
 # =============================

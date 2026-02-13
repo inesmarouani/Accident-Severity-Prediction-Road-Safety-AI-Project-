@@ -1,6 +1,5 @@
 """Tests unitaires pour les repositories"""
 
-import pytest
 from app.models.accident import Accident
 from app.repositories.accident_repository import AccidentRepository
 

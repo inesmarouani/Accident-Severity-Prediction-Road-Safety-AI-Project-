@@ -5,6 +5,7 @@ import logging
 import logging.handlers
 import sys
 from pathlib import Path
+
 from app.core.config import settings
 
 # Créer le dossier logs si nécessaire

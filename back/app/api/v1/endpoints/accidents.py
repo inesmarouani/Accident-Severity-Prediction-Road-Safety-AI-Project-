@@ -1,11 +1,12 @@
-from typing import List
 import logging
+from typing import List
+
 from fastapi import APIRouter, HTTPException, status
 
-from app.api.deps import SessionDep, PaginationDep
-from app.schemas.accident import AccidentInput
+from app.api.deps import PaginationDep, SessionDep
 from app.models.accident import Accident
 from app.repositories.accident_repository import AccidentRepository
+from app.schemas.accident import AccidentInput
 from app.services.accident_service import AccidentService
 
 logger = logging.getLogger(__name__)
