@@ -79,7 +79,9 @@ PaginationDep = Annotated[dict, Depends(get_pagination_params)]
 
 
 async def verify_api_key(
-    api_key: str = Header(None, alias="X-API-Key", description="Clé API pour l'authentification"),
+    api_key: str = Header(
+        None, alias="X-API-Key", description="Clé API pour l'authentification"
+    ),
 ) -> str:
     """
     Vérifie la validité d'une API key (optionnel - non utilisé actuellement).
@@ -102,7 +104,9 @@ async def verify_api_key(
     valid_keys = ["dev_key_12345", "prod_key_67890"]
 
     if api_key not in valid_keys:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid API Key")
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid API Key"
+        )
 
     return api_key
 
@@ -117,7 +121,10 @@ class RateLimiter:
     Limite le nombre de requêtes par utilisateur/IP.
 
     Exemple d'usage futur:
-        @app.post("/predict", dependencies=[Depends(RateLimiter(max_calls=100, period=3600))])
+        @app.post(
+    "/predict",
+    dependencies=[Depends(RateLimiter(max_calls=100, period=3600))]
+    )
         def predict(...):
             # Max 100 prédictions par heure
 

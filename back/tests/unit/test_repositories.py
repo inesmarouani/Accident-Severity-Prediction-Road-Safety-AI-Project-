@@ -90,7 +90,7 @@ class TestAccidentRepository:
         repo = AccidentRepository(session)
 
         # Créer 5 accidents
-        for i in range(5):
+        for _ in range(5):
             accident = Accident(**sample_accident_data, gravite_predite=0)
             repo.create(accident)
 

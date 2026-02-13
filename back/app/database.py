@@ -14,8 +14,9 @@ Tout ce qui touche à la DB est ici, pas ailleurs.
 """
 
 import logging
+from collections.abc import Generator
 from contextlib import contextmanager
-from typing import Annotated, Generator
+from typing import Annotated
 
 from fastapi import Depends
 from sqlmodel import Session, SQLModel, create_engine
@@ -44,9 +45,10 @@ if settings.DATABASE_URL.startswith("sqlite"):
 
 engine = create_engine(settings.DATABASE_URL, **engine_config)
 
-logger.info(
-    f"🗄️  Engine DB créé: {settings.DATABASE_URL.split('@')[-1] if '@' in settings.DATABASE_URL else 'SQLite'}"
+db_info = (
+    settings.DATABASE_URL.split("@")[-1] if "@" in settings.DATABASE_URL else "SQLite"
 )
+logger.info(f"🗄️  Engine DB créé: {db_info}")
 
 
 # =============================
@@ -103,7 +105,7 @@ def drop_db_and_tables():
 # =============================
 
 
-def get_session() -> Generator[Session, None, None]:
+def get_session() -> Generator[Session]:
     """
     Générateur de session pour FastAPI Dependency Injection.
 
@@ -152,7 +154,7 @@ SessionDep = Annotated[Session, Depends(get_session)]
 
 
 @contextmanager
-def get_session_context() -> Generator[Session, None, None]:
+def get_session_context() -> Generator[Session]:
     """
     Context manager pour usage hors FastAPI.
 

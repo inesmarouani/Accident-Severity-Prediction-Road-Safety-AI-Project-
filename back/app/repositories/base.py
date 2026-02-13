@@ -20,7 +20,7 @@ Architecture:
     Database
 """
 
-from typing import Generic, List, Optional, Type, TypeVar
+from typing import TypeVar
 
 from sqlmodel import Session, SQLModel, col, select
 
@@ -30,7 +30,7 @@ from sqlmodel import Session, SQLModel, col, select
 ModelType = TypeVar("ModelType", bound=SQLModel)
 
 
-class BaseRepository(Generic[ModelType]):
+class BaseRepository[ModelType]:
     """
     Repository de base avec opérations CRUD.
 
@@ -46,7 +46,7 @@ class BaseRepository(Generic[ModelType]):
                 ...
     """
 
-    def __init__(self, model: Type[ModelType], session: Session):
+    def __init__(self, model: type[ModelType], session: Session):
         """
         Args:
             model: La classe du modèle (ex: Accident, User)
@@ -75,7 +75,7 @@ class BaseRepository(Generic[ModelType]):
         self.session.refresh(obj)  # Recharger depuis la DB pour avoir l'ID
         return obj
 
-    def get_by_id(self, obj_id: int) -> Optional[ModelType]:
+    def get_by_id(self, obj_id: int) -> ModelType | None:
         """
         Récupérer un objet par son ID.
 
@@ -89,7 +89,7 @@ class BaseRepository(Generic[ModelType]):
         """
         return self.session.get(self.model, obj_id)
 
-    def get_all(self, offset: int = 0, limit: int = 100) -> List[ModelType]:
+    def get_all(self, offset: int = 0, limit: int = 100) -> list[ModelType]:
         """
         Récupérer tous les objets avec pagination.
 
@@ -149,7 +149,7 @@ class BaseRepository(Generic[ModelType]):
             total = repo.count()
             pages = (total + limit - 1) // limit
         """
-        statement = select(col(self.model.id)).select_from(self.model)   # type: ignore[attr-defined]
+        statement = select(col(self.model.id)).select_from(self.model)  # type: ignore[attr-defined]
         return len(list(self.session.exec(statement).all()))
 
     def exists(self, obj_id: int) -> bool:
