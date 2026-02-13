@@ -42,33 +42,36 @@ if settings.DATABASE_URL.startswith("sqlite"):
 
 engine = create_engine(settings.DATABASE_URL, **engine_config)
 
-logger.info(f"🗄️  Engine DB créé: {settings.DATABASE_URL.split('@')[-1] if '@' in settings.DATABASE_URL else 'SQLite'}")
+logger.info(
+    f"🗄️  Engine DB créé: {settings.DATABASE_URL.split('@')[-1] if '@' in settings.DATABASE_URL else 'SQLite'}"
+)
 
 
 # =============================
 # TABLE CREATION
 # =============================
 
+
 def create_db_and_tables():
     """
     Crée toutes les tables définies dans les modèles SQLModel.
-    
+
     Appelé au démarrage de l'application (app.main.on_startup).
-    
+
     Note: En production, utiliser Alembic pour les migrations
     au lieu de create_all() car:
     - Gestion de l'historique des changements
     - Rollback possible
     - Migrations versionées
     - Pas de perte de données
-    
+
     Pour l'instant, create_all() suffit car:
     - Projet en développement
     - Pas de données en production
     - Schéma simple qui ne change pas souvent
     """
     logger.info("📋 Création des tables...")
-    
+
     try:
         SQLModel.metadata.create_all(engine)
         logger.info("✅ Tables créées avec succès")
@@ -80,13 +83,13 @@ def create_db_and_tables():
 def drop_db_and_tables():
     """
     Supprime toutes les tables (DANGER - uniquement pour les tests).
-    
+
     Usage:
         # Dans les tests
         def setup():
             drop_db_and_tables()
             create_db_and_tables()
-    
+
     ⚠️ NE JAMAIS utiliser en production !
     """
     logger.warning("⚠️  SUPPRESSION de toutes les tables...")
@@ -97,17 +100,18 @@ def drop_db_and_tables():
 # SESSION MANAGEMENT
 # =============================
 
+
 def get_session() -> Generator[Session, None, None]:
     """
     Générateur de session pour FastAPI Dependency Injection.
-    
+
     Lifecycle d'une session:
     1. Création: with Session(engine)
     2. Utilisation: dans l'endpoint
     3. Commit automatique: si pas d'erreur
     4. Rollback automatique: si erreur
     5. Fermeture: finally
-    
+
     Exemple d'utilisation:
         @app.get("/accidents")
         def get_accidents(session: SessionDep):
@@ -116,7 +120,7 @@ def get_session() -> Generator[Session, None, None]:
             # session.commit() automatique si pas d'erreur
             return accidents
             # session.close() automatique
-    
+
     Avantages du pattern Generator:
     - try/finally garantit la fermeture
     - Gestion automatique des erreurs
@@ -144,17 +148,18 @@ SessionDep = Annotated[Session, Depends(get_session)]
 # CONTEXT MANAGER (optionnel)
 # =============================
 
+
 @contextmanager
 def get_session_context() -> Generator[Session, None, None]:
     """
     Context manager pour usage hors FastAPI.
-    
+
     Usage:
         # Dans un script CLI, cron job, etc.
         with get_session_context() as session:
             accidents = session.exec(select(Accident)).all()
             print(f"Total: {len(accidents)}")
-    
+
     Différence avec get_session():
     - get_session(): pour FastAPI (Depends)
     - get_session_context(): pour scripts/CLI
@@ -175,10 +180,11 @@ def get_session_context() -> Generator[Session, None, None]:
 # HEALTH CHECK
 # =============================
 
+
 def check_database_connection() -> bool:
     """
     Vérifie que la connexion DB fonctionne.
-    
+
     Usage dans /health endpoint:
         @app.get("/health")
         def health():
@@ -187,7 +193,7 @@ def check_database_connection() -> bool:
                 "status": "healthy" if db_ok else "unhealthy",
                 "database": "connected" if db_ok else "disconnected"
             }
-    
+
     Utile pour:
     - Kubernetes liveness/readiness probes
     - Monitoring (Prometheus, Datadog)

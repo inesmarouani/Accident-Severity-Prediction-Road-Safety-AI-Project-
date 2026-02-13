@@ -18,64 +18,62 @@ from sqlmodel import Field, SQLModel
 class TimestampMixin(SQLModel):
     """
     Mixin pour ajouter created_at et updated_at à tous les modèles.
-    
+
     Usage:
         class MyModel(TimestampMixin, table=True):
             id: int
             name: str
             # created_at et updated_at sont ajoutés automatiquement
-    
+
     Avantages:
     - Traçabilité: savoir quand un enregistrement a été créé/modifié
     - Audit: suivre l'historique des modifications
     - Debug: identifier les problèmes temporels
-    
+
     Note: Non utilisé pour Accident car pas nécessaire pour des prédictions,
     mais utile pour User, Log, etc.
     """
-    
+
     created_at: Optional[datetime] = Field(
         default_factory=datetime.utcnow,
         nullable=False,
-        description="Date de création de l'enregistrement"
+        description="Date de création de l'enregistrement",
     )
-    
+
     updated_at: Optional[datetime] = Field(
         default_factory=datetime.utcnow,
         nullable=False,
         sa_column_kwargs={"onupdate": datetime.utcnow},
-        description="Date de dernière modification"
+        description="Date de dernière modification",
     )
 
 
 class SoftDeleteMixin(SQLModel):
     """
     Mixin pour la suppression logique (soft delete).
-    
+
     Au lieu de supprimer vraiment un enregistrement (DELETE),
     on le marque comme supprimé (UPDATE deleted_at = NOW()).
-    
+
     Avantages:
     - Récupération possible si erreur
     - Historique complet
     - Conformité RGPD (garder trace des suppressions)
-    
+
     Usage:
         class MyModel(SoftDeleteMixin, table=True):
             # Filtrer les non-supprimés:
             # SELECT * FROM mymodel WHERE deleted_at IS NULL
     """
-    
+
     deleted_at: Optional[datetime] = Field(
-        default=None,
-        nullable=True,
-        description="Date de suppression (NULL si actif)"
+        default=None, nullable=True, description="Date de suppression (NULL si actif)"
     )
-    
+
     def is_deleted(self) -> bool:
         """Vérifie si l'enregistrement est supprimé"""
         return self.deleted_at is not None
-    
+
     def soft_delete(self):
         """Marque l'enregistrement comme supprimé"""
         self.deleted_at = datetime.utcnow()
@@ -84,17 +82,18 @@ class SoftDeleteMixin(SQLModel):
 class BaseModel(SQLModel):
     """
     Classe de base pour tous les modèles.
-    
+
     Pour l'instant vide, mais pourrait contenir:
     - Méthodes communes (to_dict, from_dict)
     - Validations communes
     - Métadonnées partagées
-    
+
     Usage:
         class MyModel(BaseModel, table=True):
             id: int
             name: str
     """
+
     pass
 
 
