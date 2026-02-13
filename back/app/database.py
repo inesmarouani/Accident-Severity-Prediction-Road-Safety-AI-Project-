@@ -13,12 +13,14 @@ Principe SOLID: Single Responsibility
 Tout ce qui touche à la DB est ici, pas ailleurs.
 """
 
-from typing import Annotated, Generator
+import logging
 from contextlib import contextmanager
+from typing import Annotated, Generator
+
 from fastapi import Depends
 from sqlmodel import Session, SQLModel, create_engine
+
 from app.core.config import settings
-import logging
 
 logger = logging.getLogger(__name__)
 
@@ -42,8 +44,8 @@ if settings.DATABASE_URL.startswith("sqlite"):
 
 engine = create_engine(settings.DATABASE_URL, **engine_config)
 
-logger.info(f"🗄️  Engine DB créé: {settings.DATABASE_URL.split('@')[-1] if '@' in settings.DATABASE_URL else 'SQLite'}")
-
+db_info = settings.DATABASE_URL.split('@')[-1] if '@' in settings.DATABASE_URL else 'SQLite'
+logger.info(f"🗄️  Engine DB créé: {db_info}")
 
 # =============================
 # TABLE CREATION

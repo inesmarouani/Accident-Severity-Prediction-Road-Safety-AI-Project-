@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 
+
 class AccidentInput(BaseModel):
     """Schéma pour les données d'entrée de prédiction"""
     
