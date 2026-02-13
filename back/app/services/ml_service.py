@@ -1,5 +1,4 @@
 import logging
-from typing import Optional
 
 import joblib
 import pandas as pd
@@ -14,8 +13,8 @@ class MLService:
     """Service pour les prédictions ML"""
 
     def __init__(self):
-        self.pipeline: Optional[Pipeline] = None
-        self.label_encoder: Optional[object] = None
+        self.pipeline: Pipeline | None = None
+        self.label_encoder: object | None = None
         self._load_models()
 
     def _load_models(self) -> None:

@@ -17,9 +17,8 @@ from fastapi.testclient import TestClient
 from sqlmodel import Session, SQLModel, create_engine
 from sqlmodel.pool import StaticPool
 
-from app.main import app
 from app.database import get_session
-
+from app.main import app
 
 # =============================
 # DATABASE FIXTURES
@@ -29,12 +28,12 @@ from app.database import get_session
 def session_fixture():
     """
     Crée une session DB en mémoire pour les tests.
-    
+
     Utilise SQLite in-memory (très rapide):
     - Créée avant chaque test
     - Supprimée après chaque test
     - Isolation complète entre tests
-    
+
     Usage dans un test:
         def test_create_accident(session):
             accident = Accident(nb_usagers=2, ...)
@@ -48,17 +47,17 @@ def session_fixture():
         connect_args={"check_same_thread": False},
         poolclass=StaticPool,
     )
-    
+
     # Créer toutes les tables
     SQLModel.metadata.create_all(engine)
-    
+
     # Créer la session
     with Session(engine) as session:
         try:
             yield session
         finally:
             session.close()
-    
+
     # Cleanup: supprimer les tables après le test
     SQLModel.metadata.drop_all(engine)
     engine.dispose()
@@ -68,10 +67,10 @@ def session_fixture():
 def client_fixture(session: Session):
     """
     Client de test FastAPI avec DB mocké.
-    
+
     Override la dépendance get_session pour utiliser
     notre session de test au lieu de la vraie DB.
-    
+
     Usage:
         def test_predict_endpoint(client):
             response = client.post("/api/v1/accidents/predict", json={...})
@@ -79,14 +78,14 @@ def client_fixture(session: Session):
     """
     def get_session_override():
         return session
-    
+
     # Override la dépendance
     app.dependency_overrides[get_session] = get_session_override
-    
+
     # Créer le client de test
     client = TestClient(app)
     yield client
-    
+
     # Cleanup: retirer l'override
     app.dependency_overrides.clear()
 
@@ -99,7 +98,7 @@ def client_fixture(session: Session):
 def sample_accident_data():
     """
     Données d'exemple pour créer un accident.
-    
+
     Usage:
         def test_something(sample_accident_data):
             accident = Accident(**sample_accident_data)
@@ -127,19 +126,19 @@ def sample_accident_data():
 def sample_accident(session: Session, sample_accident_data):
     """
     Crée un accident en DB pour les tests.
-    
+
     Usage:
         def test_get_accident(client, sample_accident):
             response = client.get(f"/api/v1/accidents/{sample_accident.id}")
             assert response.status_code == 200
     """
     from app.models.accident import Accident
-    
+
     accident = Accident(**sample_accident_data, gravite_predite=0)
     session.add(accident)
     session.commit()
     session.refresh(accident)
-    
+
     return accident
 
 
@@ -151,23 +150,23 @@ def sample_accident(session: Session, sample_accident_data):
 def setup_test_environment():
     """
     Setup global pour tous les tests.
-    
+
     scope="session": exécuté une seule fois pour toute la suite de tests
     autouse=True: exécuté automatiquement sans être demandé
-    
+
     Utilisé pour:
     - Configurer les variables d'environnement
     - Initialiser les mocks globaux
     - Configurer le logging
     """
     import os
-    
+
     # Forcer l'environnement de test
     os.environ["ENV"] = "test"
     os.environ["DATABASE_URL"] = "sqlite:///:memory:"
-    
+
     yield
-    
+
     # Cleanup après tous les tests
     pass
 
@@ -192,7 +191,7 @@ Usage:
     @pytest.mark.slow
     def test_something_slow():
         ...
-    
+
     @pytest.mark.integration
     def test_api_endpoint():
         ...
