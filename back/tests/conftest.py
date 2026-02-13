@@ -24,6 +24,7 @@ from app.main import app
 # DATABASE FIXTURES
 # =============================
 
+
 @pytest.fixture(name="session")
 def session_fixture():
     """
@@ -76,6 +77,7 @@ def client_fixture(session: Session):
             response = client.post("/api/v1/accidents/predict", json={...})
             assert response.status_code == 201
     """
+
     def get_session_override():
         return session
 
@@ -93,6 +95,7 @@ def client_fixture(session: Session):
 # =============================
 # DATA FIXTURES
 # =============================
+
 
 @pytest.fixture
 def sample_accident_data():
@@ -118,7 +121,7 @@ def sample_accident_data():
         "situ": 1.0,
         "circ": 2.0,
         "localisation_pieton": 0,
-        "nbv": 2.0
+        "nbv": 2.0,
     }
 
 
@@ -145,6 +148,7 @@ def sample_accident(session: Session, sample_accident_data):
 # =============================
 # CONFIGURATION PYTEST
 # =============================
+
 
 @pytest.fixture(scope="session", autouse=True)
 def setup_test_environment():
