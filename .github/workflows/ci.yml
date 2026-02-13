@@ -92,6 +92,7 @@ jobs:
       postgres:
         image: postgres:15
         env:
+          POSTGRES_USER: postgres  
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: test_db
         options: >-
@@ -116,7 +117,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: ./back
-        run: uv sync
+        run: uv sync --all-extras  # or uv sync -e dev
 
       - name: Run tests with coverage
         working-directory: ./back
