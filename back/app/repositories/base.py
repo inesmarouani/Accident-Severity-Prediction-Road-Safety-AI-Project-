@@ -149,7 +149,7 @@ class BaseRepository(Generic[ModelType]):
             total = repo.count()
             pages = (total + limit - 1) // limit
         """
-        statement = select(col(self.model.id)).select_from(self.model)
+        statement = select(col(self.model.id)).select_from(self.model)   # type: ignore[attr-defined]
         return len(list(self.session.exec(statement).all()))
 
     def exists(self, obj_id: int) -> bool:
