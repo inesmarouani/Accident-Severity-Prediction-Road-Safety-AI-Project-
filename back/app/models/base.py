@@ -11,7 +11,6 @@ Concepts:
 """
 
 from datetime import datetime
-from typing import Optional
 
 from sqlmodel import Field, SQLModel
 
@@ -35,13 +34,13 @@ class TimestampMixin(SQLModel):
     mais utile pour User, Log, etc.
     """
 
-    created_at: Optional[datetime] = Field(
+    created_at: datetime | None = Field(
         default_factory=datetime.utcnow,
         nullable=False,
         description="Date de création de l'enregistrement",
     )
 
-    updated_at: Optional[datetime] = Field(
+    updated_at: datetime | None = Field(
         default_factory=datetime.utcnow,
         nullable=False,
         sa_column_kwargs={"onupdate": datetime.utcnow},
@@ -67,7 +66,7 @@ class SoftDeleteMixin(SQLModel):
             # SELECT * FROM mymodel WHERE deleted_at IS NULL
     """
 
-    deleted_at: Optional[datetime] = Field(
+    deleted_at: datetime | None = Field(
         default=None, nullable=True, description="Date de suppression (NULL si actif)"
     )
 
@@ -107,7 +106,7 @@ class User(TimestampMixin, SoftDeleteMixin, table=True):
     is_active: bool = True
     # Hérite automatiquement de:
     # - created_at
-    # - updated_at  
+    # - updated_at
     # - deleted_at
     # - is_deleted()
     # - soft_delete()

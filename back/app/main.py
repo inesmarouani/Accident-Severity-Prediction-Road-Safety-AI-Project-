@@ -32,7 +32,8 @@ def on_shutdown():
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
     logger.warning(f"❌ Erreur de validation: {exc.errors()}")
     return JSONResponse(
-        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, content={"detail": exc.errors()}
+        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+        content={"detail": exc.errors()},
     )
 
 

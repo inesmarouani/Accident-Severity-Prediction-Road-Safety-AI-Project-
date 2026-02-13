@@ -9,7 +9,6 @@ Tests d'intégration:
 """
 
 
-
 class TestPredictEndpoint:
     """Tests pour POST /api/v1/accidents/predict"""
 
@@ -117,7 +116,9 @@ class TestGetAccidentByIdEndpoint:
         Then: 200 avec l'accident
         """
         # Créer un accident
-        create_response = client.post("/api/v1/accidents/predict", json=sample_accident_data)
+        create_response = client.post(
+            "/api/v1/accidents/predict", json=sample_accident_data
+        )
         accident_id = create_response.json()["id"]
 
         # Récupérer l'accident

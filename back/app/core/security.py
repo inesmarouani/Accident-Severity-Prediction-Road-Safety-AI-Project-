@@ -20,7 +20,6 @@ Pour l'instant, ces fonctionnalités ne sont pas nécessaires car:
 
 import secrets
 from datetime import timedelta
-from typing import Optional
 
 from passlib.context import CryptContext
 
@@ -63,7 +62,7 @@ def generate_token(length: int = 32) -> str:
     return secrets.token_urlsafe(length)
 
 
-def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
+def create_access_token(data: dict, expires_delta: timedelta | None = None) -> str:
     """
     Crée un token JWT pour l'authentification.
 

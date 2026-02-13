@@ -64,7 +64,9 @@ class TestAccidentModel:
             (100, 100),
         ],
     )
-    def test_accident_nb_usagers_values(self, sample_accident_data, nb_usagers, expected):
+    def test_accident_nb_usagers_values(
+        self, sample_accident_data, nb_usagers, expected
+    ):
         """
         Test: Différentes valeurs de nb_usagers
         Given: Plusieurs valeurs possibles
@@ -81,5 +83,7 @@ class TestAccidentModel:
 
 # Pour lancer ces tests:
 # $ pytest tests/unit/test_models.py
-# $ pytest tests/unit/test_models.py::TestAccidentModel::test_accident_creation_with_all_fields
-# $ pytest tests/unit/test_models.py -v
+# Après
+# $ pytest tests/unit/test_models.py::TestAccidentModel::\
+#   test_accident_creation_with_all_fields
+# # $ pytest tests/unit/test_models.py -v

@@ -1,5 +1,4 @@
 import logging
-from typing import List
 
 from fastapi import APIRouter, HTTPException, status
 
@@ -23,7 +22,9 @@ def predict_accident(data: AccidentInput, session: SessionDep):
         service = AccidentService(repository)
         result = service.predict_and_save(data)
 
-        logger.info(f"✅ Prédiction - ID: {result.id}, Gravité: {result.gravite_predite}")
+        logger.info(
+            f"✅ Prédiction - ID: {result.id}, Gravité: {result.gravite_predite}"
+        )
         return result
 
     except Exception as e:
@@ -31,7 +32,7 @@ def predict_accident(data: AccidentInput, session: SessionDep):
         raise HTTPException(status_code=500, detail=str(e)) from e
 
 
-@router.get("/", response_model=List[Accident])
+@router.get("/", response_model=list[Accident])
 def get_accidents(session: SessionDep, pagination: PaginationDep):
     """Récupère la liste des accidents"""
     repository = AccidentRepository(session)
