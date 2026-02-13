@@ -196,7 +196,7 @@ def check_database_connection() -> bool:
     try:
         with Session(engine) as session:
             # Execute une requête simple
-            session.exec("SELECT 1")
+            session.exec("SELECT 1")  # type: ignore[call-overload]
         return True
     except Exception as e:
         logger.error(f"❌ DB Health Check failed: {e}")
