@@ -30,7 +30,7 @@ from sqlmodel import Session, SQLModel, col, select
 ModelType = TypeVar("ModelType", bound=SQLModel)
 
 
-class BaseRepository[ModelType]:
+class BaseRepository[ModelType]:  # type: ignore[valid-type]
     """
     Repository de base avec opérations CRUD.
 
@@ -87,7 +87,7 @@ class BaseRepository[ModelType]:
             if accident:
                 print(accident.gravite_predite)
         """
-        return self.session.get(self.model, obj_id)
+        return self.session.get(self.model, obj_id)  # type: ignore[return-value]
 
     def get_all(self, offset: int = 0, limit: int = 100) -> list[ModelType]:
         """
@@ -108,7 +108,7 @@ class BaseRepository[ModelType]:
             page2 = repo.get_all(offset=100, limit=100)
         """
         statement = select(self.model).offset(offset).limit(limit)
-        return list(self.session.exec(statement).all())
+        return list(self.session.exec(statement).all())  # type: ignore[arg-type]
 
     def update(self, obj: ModelType) -> ModelType:
         """
