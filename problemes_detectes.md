@@ -135,7 +135,7 @@ E501 Line too long (119 > 100)
 43 | engine = create_engine(settings.DATABASE_URL, **engine_config)
 44 |
 45 | logger.info(f"🗄️  Engine DB créé: {settings.DATABASE_URL.split('@')[-1] if '@'  in settings.DATABASE_URL else 'SQLite'}")
-   |                                                                                
+   |
                      ^^^^^^^^^^^^^^^^^^^
    |
 
@@ -310,14 +310,14 @@ Found 24 errors.
 # Type checking avec Mypy
 ----------------------------------------------------------------------
 
-ines@DESKTOP-DK2UDN1:/mnt/c/Users/ins expertise/Documents/SIMPLON/projet-accidents_routiers/Accident-Severity-Prediction-Road-Safety-AI-Project-/back$ uv run mypy app/ 
+ines@DESKTOP-DK2UDN1:/mnt/c/Users/ins expertise/Documents/SIMPLON/projet-accidents_routiers/Accident-Severity-Prediction-Road-Safety-AI-Project-/back$ uv run mypy app/
 app/core/security.py:21: error: Library stubs not installed for "passlib.context"  [import-untyped]
 app/core/security.py:21: note: Hint: "python3 -m pip install types-passlib"
 app/core/security.py:21: note: (or run "mypy --install-types" to install all missing stub packages)
 app/core/security.py:21: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports
 app/services/ml_service.py:2: error: Skipping analyzing "joblib": module is installed, but missing library stubs or py.typed marker  [import-untyped]
 app/services/ml_service.py:3: error: Library stubs not installed for "pandas"  [import-untyped]
-app/services/ml_service.py:3: note: Hint: "python3 -m pip install pandas-stubs"     
+app/services/ml_service.py:3: note: Hint: "python3 -m pip install pandas-stubs"
 app/repositories/base.py:151: error: "type[ModelType]" has no attribute "id"  [attr-defined]
 app/database.py:199: error: No overload variant of "exec" of "Session" matches argument type "str"  [call-overload]
 app/database.py:199: note: Possible overload variants:
@@ -337,7 +337,7 @@ rootdir: /mnt/c/Users/ins expertise/Documents/SIMPLON/projet-accidents_routiers/
 configfile: pyproject.toml
 testpaths: tests
 plugins: anyio-4.12.1, cov-7.0.0
-collected 12 items / 1 error                                                       
+collected 12 items / 1 error
 
 ====================================== ERRORS ======================================
 _____________________ ERROR collecting tests/unit/test_api.py ______________________
@@ -395,8 +395,8 @@ Files skipped (0):
 
 # 🔍 Problèmes Détectés - Accident Severity Prediction API
 
-**Date :** 2026-02-13  
-**Analysé par :** Ines Marouani  
+**Date :** 2026-02-13
+**Analysé par :** Ines Marouani
 **Outils :** Ruff, Mypy, Pytest
 
 ---
