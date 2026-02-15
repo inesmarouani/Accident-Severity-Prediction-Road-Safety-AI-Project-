@@ -42,11 +42,13 @@ jobs:
         run: uv sync --extra dev
 
       - name: Python Semantic Release
+        working-directory: ./back
         id: release
-        uses: python-semantic-release/python-semantic-release@v9.14.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          root_options: "-C ./back"
+        env:
+          GH8TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+            uv run semantic-release version
+            uv run semantic release publish
 
       - name: Publish to GHCR (if new release)
         if: steps.release.outputs.released == 'true'
