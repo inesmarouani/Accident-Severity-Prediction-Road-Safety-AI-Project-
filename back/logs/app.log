@@ -1,3 +1,147 @@
 2026-02-07 09:40:19 - accident_severity - INFO - 🚀 Démarrage de Accident Severity API
 2026-02-07 09:40:19 - accident_severity - INFO - 📍 Environnement: development
 2026-02-07 09:40:19 - accident_severity - INFO - 🗄️  Base de données: db:5432/accidents
+2026-02-13 16:47:19 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:47:19 - app.api.v1.endpoints.accidents - INFO - 📥 Nouvelle requête de prédiction
+2026-02-13 16:47:19 - app.services.ml_service - DEBUG - 🔮 Prédiction pour: {'nb_usagers': 2, 'is_passagers': 0, 'age_cat': '25-44', 'nb_proteges': 1, 'trajet': 1.0, 'vma': 50.0, 'lum': 1.0, 'agg': 1, 'atm': 1.0, 'saison': 'printemps', 'col': 2.0, 'situ': 1.0, 'circ': 2.0, 'localisation_pieton': 0, 'nbv': 2.0}
+2026-02-13 16:47:19 - app.services.ml_service - INFO - ✅ Prédiction: 1
+2026-02-13 16:47:19 - app.api.v1.endpoints.accidents - INFO - ✅ Prédiction - ID: 1, Gravité: 1
+2026-02-13 16:47:19 - httpx - INFO - HTTP Request: POST http://testserver/api/v1/accidents/predict "HTTP/1.1 201 Created"
+2026-02-13 16:47:19 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:47:19 - accident_severity - WARNING - ❌ Erreur de validation: [{'type': 'missing', 'loc': ('body', 'nb_usagers'), 'msg': 'Field required', 'input': {'is_passagers': 0, 'age_cat': '25-44', 'nb_proteges': 1, 'trajet': 1.0, 'vma': 50.0, 'lum': 1.0, 'agg': 1, 'atm': 1.0, 'saison': 'printemps', 'col': 2.0, 'situ': 1.0, 'circ': 2.0, 'localisation_pieton': 0, 'nbv': 2.0}}]
+2026-02-13 16:47:19 - httpx - INFO - HTTP Request: POST http://testserver/api/v1/accidents/predict "HTTP/1.1 422 Unprocessable Entity"
+2026-02-13 16:47:19 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:47:19 - accident_severity - WARNING - ❌ Erreur de validation: [{'type': 'int_parsing', 'loc': ('body', 'nb_usagers'), 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': 'deux'}]
+2026-02-13 16:47:19 - httpx - INFO - HTTP Request: POST http://testserver/api/v1/accidents/predict "HTTP/1.1 422 Unprocessable Entity"
+2026-02-13 16:47:19 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:47:19 - httpx - INFO - HTTP Request: GET http://testserver/api/v1/accidents/ "HTTP/1.1 200 OK"
+2026-02-13 16:47:19 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:47:19 - app.api.v1.endpoints.accidents - INFO - 📥 Nouvelle requête de prédiction
+2026-02-13 16:47:19 - app.services.ml_service - DEBUG - 🔮 Prédiction pour: {'nb_usagers': 2, 'is_passagers': 0, 'age_cat': '25-44', 'nb_proteges': 1, 'trajet': 1.0, 'vma': 50.0, 'lum': 1.0, 'agg': 1, 'atm': 1.0, 'saison': 'printemps', 'col': 2.0, 'situ': 1.0, 'circ': 2.0, 'localisation_pieton': 0, 'nbv': 2.0}
+2026-02-13 16:47:19 - app.services.ml_service - INFO - ✅ Prédiction: 1
+2026-02-13 16:47:19 - app.api.v1.endpoints.accidents - INFO - ✅ Prédiction - ID: 1, Gravité: 1
+2026-02-13 16:47:19 - httpx - INFO - HTTP Request: POST http://testserver/api/v1/accidents/predict "HTTP/1.1 201 Created"
+2026-02-13 16:47:19 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:47:19 - app.api.v1.endpoints.accidents - INFO - 📥 Nouvelle requête de prédiction
+2026-02-13 16:47:19 - app.services.ml_service - DEBUG - 🔮 Prédiction pour: {'nb_usagers': 2, 'is_passagers': 0, 'age_cat': '25-44', 'nb_proteges': 1, 'trajet': 1.0, 'vma': 50.0, 'lum': 1.0, 'agg': 1, 'atm': 1.0, 'saison': 'printemps', 'col': 2.0, 'situ': 1.0, 'circ': 2.0, 'localisation_pieton': 0, 'nbv': 2.0}
+2026-02-13 16:47:19 - app.services.ml_service - INFO - ✅ Prédiction: 1
+2026-02-13 16:47:19 - app.api.v1.endpoints.accidents - INFO - ✅ Prédiction - ID: 2, Gravité: 1
+2026-02-13 16:47:19 - httpx - INFO - HTTP Request: POST http://testserver/api/v1/accidents/predict "HTTP/1.1 201 Created"
+2026-02-13 16:47:19 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:47:19 - httpx - INFO - HTTP Request: GET http://testserver/api/v1/accidents/ "HTTP/1.1 200 OK"
+2026-02-13 16:47:19 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:47:19 - app.api.v1.endpoints.accidents - INFO - 📥 Nouvelle requête de prédiction
+2026-02-13 16:47:19 - app.services.ml_service - DEBUG - 🔮 Prédiction pour: {'nb_usagers': 2, 'is_passagers': 0, 'age_cat': '25-44', 'nb_proteges': 1, 'trajet': 1.0, 'vma': 50.0, 'lum': 1.0, 'agg': 1, 'atm': 1.0, 'saison': 'printemps', 'col': 2.0, 'situ': 1.0, 'circ': 2.0, 'localisation_pieton': 0, 'nbv': 2.0}
+2026-02-13 16:47:19 - app.services.ml_service - INFO - ✅ Prédiction: 1
+2026-02-13 16:47:19 - app.api.v1.endpoints.accidents - INFO - ✅ Prédiction - ID: 1, Gravité: 1
+2026-02-13 16:47:19 - httpx - INFO - HTTP Request: POST http://testserver/api/v1/accidents/predict "HTTP/1.1 201 Created"
+2026-02-13 16:47:19 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:47:19 - app.api.v1.endpoints.accidents - INFO - 📥 Nouvelle requête de prédiction
+2026-02-13 16:47:19 - app.services.ml_service - DEBUG - 🔮 Prédiction pour: {'nb_usagers': 2, 'is_passagers': 0, 'age_cat': '25-44', 'nb_proteges': 1, 'trajet': 1.0, 'vma': 50.0, 'lum': 1.0, 'agg': 1, 'atm': 1.0, 'saison': 'printemps', 'col': 2.0, 'situ': 1.0, 'circ': 2.0, 'localisation_pieton': 0, 'nbv': 2.0}
+2026-02-13 16:47:19 - app.services.ml_service - INFO - ✅ Prédiction: 1
+2026-02-13 16:47:19 - app.api.v1.endpoints.accidents - INFO - ✅ Prédiction - ID: 2, Gravité: 1
+2026-02-13 16:47:19 - httpx - INFO - HTTP Request: POST http://testserver/api/v1/accidents/predict "HTTP/1.1 201 Created"
+2026-02-13 16:47:19 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:47:19 - app.api.v1.endpoints.accidents - INFO - 📥 Nouvelle requête de prédiction
+2026-02-13 16:47:19 - app.services.ml_service - DEBUG - 🔮 Prédiction pour: {'nb_usagers': 2, 'is_passagers': 0, 'age_cat': '25-44', 'nb_proteges': 1, 'trajet': 1.0, 'vma': 50.0, 'lum': 1.0, 'agg': 1, 'atm': 1.0, 'saison': 'printemps', 'col': 2.0, 'situ': 1.0, 'circ': 2.0, 'localisation_pieton': 0, 'nbv': 2.0}
+2026-02-13 16:47:19 - app.services.ml_service - INFO - ✅ Prédiction: 1
+2026-02-13 16:47:19 - app.api.v1.endpoints.accidents - INFO - ✅ Prédiction - ID: 3, Gravité: 1
+2026-02-13 16:47:19 - httpx - INFO - HTTP Request: POST http://testserver/api/v1/accidents/predict "HTTP/1.1 201 Created"
+2026-02-13 16:47:19 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:47:19 - app.api.v1.endpoints.accidents - INFO - 📥 Nouvelle requête de prédiction
+2026-02-13 16:47:19 - app.services.ml_service - DEBUG - 🔮 Prédiction pour: {'nb_usagers': 2, 'is_passagers': 0, 'age_cat': '25-44', 'nb_proteges': 1, 'trajet': 1.0, 'vma': 50.0, 'lum': 1.0, 'agg': 1, 'atm': 1.0, 'saison': 'printemps', 'col': 2.0, 'situ': 1.0, 'circ': 2.0, 'localisation_pieton': 0, 'nbv': 2.0}
+2026-02-13 16:47:19 - app.services.ml_service - INFO - ✅ Prédiction: 1
+2026-02-13 16:47:19 - app.api.v1.endpoints.accidents - INFO - ✅ Prédiction - ID: 4, Gravité: 1
+2026-02-13 16:47:19 - httpx - INFO - HTTP Request: POST http://testserver/api/v1/accidents/predict "HTTP/1.1 201 Created"
+2026-02-13 16:47:19 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:47:19 - app.api.v1.endpoints.accidents - INFO - 📥 Nouvelle requête de prédiction
+2026-02-13 16:47:19 - app.services.ml_service - DEBUG - 🔮 Prédiction pour: {'nb_usagers': 2, 'is_passagers': 0, 'age_cat': '25-44', 'nb_proteges': 1, 'trajet': 1.0, 'vma': 50.0, 'lum': 1.0, 'agg': 1, 'atm': 1.0, 'saison': 'printemps', 'col': 2.0, 'situ': 1.0, 'circ': 2.0, 'localisation_pieton': 0, 'nbv': 2.0}
+2026-02-13 16:47:19 - app.services.ml_service - INFO - ✅ Prédiction: 1
+2026-02-13 16:47:19 - app.api.v1.endpoints.accidents - INFO - ✅ Prédiction - ID: 5, Gravité: 1
+2026-02-13 16:47:19 - httpx - INFO - HTTP Request: POST http://testserver/api/v1/accidents/predict "HTTP/1.1 201 Created"
+2026-02-13 16:47:19 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:47:19 - httpx - INFO - HTTP Request: GET http://testserver/api/v1/accidents/?offset=2&limit=2 "HTTP/1.1 200 OK"
+2026-02-13 16:47:19 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:47:19 - app.api.v1.endpoints.accidents - INFO - 📥 Nouvelle requête de prédiction
+2026-02-13 16:47:19 - app.services.ml_service - DEBUG - 🔮 Prédiction pour: {'nb_usagers': 2, 'is_passagers': 0, 'age_cat': '25-44', 'nb_proteges': 1, 'trajet': 1.0, 'vma': 50.0, 'lum': 1.0, 'agg': 1, 'atm': 1.0, 'saison': 'printemps', 'col': 2.0, 'situ': 1.0, 'circ': 2.0, 'localisation_pieton': 0, 'nbv': 2.0}
+2026-02-13 16:47:19 - app.services.ml_service - INFO - ✅ Prédiction: 1
+2026-02-13 16:47:19 - app.api.v1.endpoints.accidents - INFO - ✅ Prédiction - ID: 1, Gravité: 1
+2026-02-13 16:47:19 - httpx - INFO - HTTP Request: POST http://testserver/api/v1/accidents/predict "HTTP/1.1 201 Created"
+2026-02-13 16:47:19 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:47:19 - httpx - INFO - HTTP Request: GET http://testserver/api/v1/accidents/1 "HTTP/1.1 200 OK"
+2026-02-13 16:47:19 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:47:19 - httpx - INFO - HTTP Request: GET http://testserver/api/v1/accidents/99999 "HTTP/1.1 404 Not Found"
+2026-02-13 16:47:19 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:47:19 - httpx - INFO - HTTP Request: GET http://testserver/health "HTTP/1.1 200 OK"
+2026-02-13 16:55:45 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:55:45 - app.api.v1.endpoints.accidents - INFO - 📥 Nouvelle requête de prédiction
+2026-02-13 16:55:45 - app.services.ml_service - DEBUG - 🔮 Prédiction pour: {'nb_usagers': 2, 'is_passagers': 0, 'age_cat': '25-44', 'nb_proteges': 1, 'trajet': 1.0, 'vma': 50.0, 'lum': 1.0, 'agg': 1, 'atm': 1.0, 'saison': 'printemps', 'col': 2.0, 'situ': 1.0, 'circ': 2.0, 'localisation_pieton': 0, 'nbv': 2.0}
+2026-02-13 16:55:45 - app.services.ml_service - INFO - ✅ Prédiction: 1
+2026-02-13 16:55:45 - app.api.v1.endpoints.accidents - INFO - ✅ Prédiction - ID: 1, Gravité: 1
+2026-02-13 16:55:45 - httpx - INFO - HTTP Request: POST http://testserver/api/v1/accidents/predict "HTTP/1.1 201 Created"
+2026-02-13 16:55:45 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:55:45 - accident_severity - WARNING - ❌ Erreur de validation: [{'type': 'missing', 'loc': ('body', 'nb_usagers'), 'msg': 'Field required', 'input': {'is_passagers': 0, 'age_cat': '25-44', 'nb_proteges': 1, 'trajet': 1.0, 'vma': 50.0, 'lum': 1.0, 'agg': 1, 'atm': 1.0, 'saison': 'printemps', 'col': 2.0, 'situ': 1.0, 'circ': 2.0, 'localisation_pieton': 0, 'nbv': 2.0}}]
+2026-02-13 16:55:45 - httpx - INFO - HTTP Request: POST http://testserver/api/v1/accidents/predict "HTTP/1.1 422 Unprocessable Entity"
+2026-02-13 16:55:45 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:55:45 - accident_severity - WARNING - ❌ Erreur de validation: [{'type': 'int_parsing', 'loc': ('body', 'nb_usagers'), 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': 'deux'}]
+2026-02-13 16:55:45 - httpx - INFO - HTTP Request: POST http://testserver/api/v1/accidents/predict "HTTP/1.1 422 Unprocessable Entity"
+2026-02-13 16:55:45 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:55:45 - httpx - INFO - HTTP Request: GET http://testserver/api/v1/accidents/ "HTTP/1.1 200 OK"
+2026-02-13 16:55:45 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:55:45 - app.api.v1.endpoints.accidents - INFO - 📥 Nouvelle requête de prédiction
+2026-02-13 16:55:45 - app.services.ml_service - DEBUG - 🔮 Prédiction pour: {'nb_usagers': 2, 'is_passagers': 0, 'age_cat': '25-44', 'nb_proteges': 1, 'trajet': 1.0, 'vma': 50.0, 'lum': 1.0, 'agg': 1, 'atm': 1.0, 'saison': 'printemps', 'col': 2.0, 'situ': 1.0, 'circ': 2.0, 'localisation_pieton': 0, 'nbv': 2.0}
+2026-02-13 16:55:45 - app.services.ml_service - INFO - ✅ Prédiction: 1
+2026-02-13 16:55:45 - app.api.v1.endpoints.accidents - INFO - ✅ Prédiction - ID: 1, Gravité: 1
+2026-02-13 16:55:45 - httpx - INFO - HTTP Request: POST http://testserver/api/v1/accidents/predict "HTTP/1.1 201 Created"
+2026-02-13 16:55:45 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:55:45 - app.api.v1.endpoints.accidents - INFO - 📥 Nouvelle requête de prédiction
+2026-02-13 16:55:45 - app.services.ml_service - DEBUG - 🔮 Prédiction pour: {'nb_usagers': 2, 'is_passagers': 0, 'age_cat': '25-44', 'nb_proteges': 1, 'trajet': 1.0, 'vma': 50.0, 'lum': 1.0, 'agg': 1, 'atm': 1.0, 'saison': 'printemps', 'col': 2.0, 'situ': 1.0, 'circ': 2.0, 'localisation_pieton': 0, 'nbv': 2.0}
+2026-02-13 16:55:45 - app.services.ml_service - INFO - ✅ Prédiction: 1
+2026-02-13 16:55:45 - app.api.v1.endpoints.accidents - INFO - ✅ Prédiction - ID: 2, Gravité: 1
+2026-02-13 16:55:45 - httpx - INFO - HTTP Request: POST http://testserver/api/v1/accidents/predict "HTTP/1.1 201 Created"
+2026-02-13 16:55:45 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:55:45 - httpx - INFO - HTTP Request: GET http://testserver/api/v1/accidents/ "HTTP/1.1 200 OK"
+2026-02-13 16:55:45 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:55:45 - app.api.v1.endpoints.accidents - INFO - 📥 Nouvelle requête de prédiction
+2026-02-13 16:55:45 - app.services.ml_service - DEBUG - 🔮 Prédiction pour: {'nb_usagers': 2, 'is_passagers': 0, 'age_cat': '25-44', 'nb_proteges': 1, 'trajet': 1.0, 'vma': 50.0, 'lum': 1.0, 'agg': 1, 'atm': 1.0, 'saison': 'printemps', 'col': 2.0, 'situ': 1.0, 'circ': 2.0, 'localisation_pieton': 0, 'nbv': 2.0}
+2026-02-13 16:55:45 - app.services.ml_service - INFO - ✅ Prédiction: 1
+2026-02-13 16:55:45 - app.api.v1.endpoints.accidents - INFO - ✅ Prédiction - ID: 1, Gravité: 1
+2026-02-13 16:55:45 - httpx - INFO - HTTP Request: POST http://testserver/api/v1/accidents/predict "HTTP/1.1 201 Created"
+2026-02-13 16:55:45 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:55:45 - app.api.v1.endpoints.accidents - INFO - 📥 Nouvelle requête de prédiction
+2026-02-13 16:55:45 - app.services.ml_service - DEBUG - 🔮 Prédiction pour: {'nb_usagers': 2, 'is_passagers': 0, 'age_cat': '25-44', 'nb_proteges': 1, 'trajet': 1.0, 'vma': 50.0, 'lum': 1.0, 'agg': 1, 'atm': 1.0, 'saison': 'printemps', 'col': 2.0, 'situ': 1.0, 'circ': 2.0, 'localisation_pieton': 0, 'nbv': 2.0}
+2026-02-13 16:55:45 - app.services.ml_service - INFO - ✅ Prédiction: 1
+2026-02-13 16:55:45 - app.api.v1.endpoints.accidents - INFO - ✅ Prédiction - ID: 2, Gravité: 1
+2026-02-13 16:55:45 - httpx - INFO - HTTP Request: POST http://testserver/api/v1/accidents/predict "HTTP/1.1 201 Created"
+2026-02-13 16:55:45 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:55:45 - app.api.v1.endpoints.accidents - INFO - 📥 Nouvelle requête de prédiction
+2026-02-13 16:55:45 - app.services.ml_service - DEBUG - 🔮 Prédiction pour: {'nb_usagers': 2, 'is_passagers': 0, 'age_cat': '25-44', 'nb_proteges': 1, 'trajet': 1.0, 'vma': 50.0, 'lum': 1.0, 'agg': 1, 'atm': 1.0, 'saison': 'printemps', 'col': 2.0, 'situ': 1.0, 'circ': 2.0, 'localisation_pieton': 0, 'nbv': 2.0}
+2026-02-13 16:55:45 - app.services.ml_service - INFO - ✅ Prédiction: 1
+2026-02-13 16:55:45 - app.api.v1.endpoints.accidents - INFO - ✅ Prédiction - ID: 3, Gravité: 1
+2026-02-13 16:55:45 - httpx - INFO - HTTP Request: POST http://testserver/api/v1/accidents/predict "HTTP/1.1 201 Created"
+2026-02-13 16:55:45 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:55:45 - app.api.v1.endpoints.accidents - INFO - 📥 Nouvelle requête de prédiction
+2026-02-13 16:55:45 - app.services.ml_service - DEBUG - 🔮 Prédiction pour: {'nb_usagers': 2, 'is_passagers': 0, 'age_cat': '25-44', 'nb_proteges': 1, 'trajet': 1.0, 'vma': 50.0, 'lum': 1.0, 'agg': 1, 'atm': 1.0, 'saison': 'printemps', 'col': 2.0, 'situ': 1.0, 'circ': 2.0, 'localisation_pieton': 0, 'nbv': 2.0}
+2026-02-13 16:55:45 - app.services.ml_service - INFO - ✅ Prédiction: 1
+2026-02-13 16:55:45 - app.api.v1.endpoints.accidents - INFO - ✅ Prédiction - ID: 4, Gravité: 1
+2026-02-13 16:55:45 - httpx - INFO - HTTP Request: POST http://testserver/api/v1/accidents/predict "HTTP/1.1 201 Created"
+2026-02-13 16:55:45 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:55:45 - app.api.v1.endpoints.accidents - INFO - 📥 Nouvelle requête de prédiction
+2026-02-13 16:55:45 - app.services.ml_service - DEBUG - 🔮 Prédiction pour: {'nb_usagers': 2, 'is_passagers': 0, 'age_cat': '25-44', 'nb_proteges': 1, 'trajet': 1.0, 'vma': 50.0, 'lum': 1.0, 'agg': 1, 'atm': 1.0, 'saison': 'printemps', 'col': 2.0, 'situ': 1.0, 'circ': 2.0, 'localisation_pieton': 0, 'nbv': 2.0}
+2026-02-13 16:55:45 - app.services.ml_service - INFO - ✅ Prédiction: 1
+2026-02-13 16:55:45 - app.api.v1.endpoints.accidents - INFO - ✅ Prédiction - ID: 5, Gravité: 1
+2026-02-13 16:55:45 - httpx - INFO - HTTP Request: POST http://testserver/api/v1/accidents/predict "HTTP/1.1 201 Created"
+2026-02-13 16:55:45 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:55:45 - httpx - INFO - HTTP Request: GET http://testserver/api/v1/accidents/?offset=2&limit=2 "HTTP/1.1 200 OK"
+2026-02-13 16:55:45 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:55:45 - app.api.v1.endpoints.accidents - INFO - 📥 Nouvelle requête de prédiction
+2026-02-13 16:55:45 - app.services.ml_service - DEBUG - 🔮 Prédiction pour: {'nb_usagers': 2, 'is_passagers': 0, 'age_cat': '25-44', 'nb_proteges': 1, 'trajet': 1.0, 'vma': 50.0, 'lum': 1.0, 'agg': 1, 'atm': 1.0, 'saison': 'printemps', 'col': 2.0, 'situ': 1.0, 'circ': 2.0, 'localisation_pieton': 0, 'nbv': 2.0}
+2026-02-13 16:55:45 - app.services.ml_service - INFO - ✅ Prédiction: 1
+2026-02-13 16:55:45 - app.api.v1.endpoints.accidents - INFO - ✅ Prédiction - ID: 1, Gravité: 1
+2026-02-13 16:55:45 - httpx - INFO - HTTP Request: POST http://testserver/api/v1/accidents/predict "HTTP/1.1 201 Created"
+2026-02-13 16:55:45 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:55:45 - httpx - INFO - HTTP Request: GET http://testserver/api/v1/accidents/1 "HTTP/1.1 200 OK"
+2026-02-13 16:55:45 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:55:45 - httpx - INFO - HTTP Request: GET http://testserver/api/v1/accidents/99999 "HTTP/1.1 404 Not Found"
+2026-02-13 16:55:45 - asyncio - DEBUG - Using selector: EpollSelector
+2026-02-13 16:55:45 - httpx - INFO - HTTP Request: GET http://testserver/health "HTTP/1.1 200 OK"

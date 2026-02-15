@@ -1,14 +1,14 @@
-from typing import Optional
-from sqlmodel import Field, SQLModel
+from sqlmodel import Field
+
 from app.models.base import TimestampMixin
 
 
 class Accident(TimestampMixin, table=True):
     """Modèle de la table accidents en base de données"""
-    
+
     __tablename__ = "accidents"
-    
-    id: Optional[int] = Field(default=None, primary_key=True)
+
+    id: int | None = Field(default=None, primary_key=True)
     nb_usagers: int
     is_passagers: int
     age_cat: str
@@ -24,4 +24,4 @@ class Accident(TimestampMixin, table=True):
     circ: float
     localisation_pieton: int
     nbv: float
-    gravite_predite: Optional[int] = None
+    gravite_predite: int | None = None

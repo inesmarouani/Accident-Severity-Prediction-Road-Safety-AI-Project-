@@ -1,10 +1,7 @@
 """Constantes et options pour les dropdowns"""
 
 OPTIONS = {
-    "is_passagers": [
-        {"label": "Non", "value": 0},
-        {"label": "Oui", "value": 1}
-    ],
+    "is_passagers": [{"label": "Non", "value": 0}, {"label": "Oui", "value": 1}],
     "col": [
         {"label": "Deux véhicules - frontale", "value": 1},
         {"label": "Deux véhicules – par l'arrière", "value": 2},
@@ -28,7 +25,7 @@ OPTIONS = {
         {"label": "Courses – achats", "value": 3},
         {"label": "Utilisation professionnelle", "value": 4},
         {"label": "Promenade – loisirs", "value": 5},
-        {"label": "Autre", "value": 9}
+        {"label": "Autre", "value": 9},
     ],
     "circ": [
         {"label": "A sens unique", "value": 1},
@@ -43,10 +40,7 @@ OPTIONS = {
         {"label": "Nuit avec éclairage public non allumé", "value": 4},
         {"label": "Nuit avec éclairage public allumé", "value": 5},
     ],
-    "agg": [
-        {"label": "Hors agglomération", "value": 1},
-        {"label": "En agglomération", "value": 2}
-    ],
+    "agg": [{"label": "Hors agglomération", "value": 1}, {"label": "En agglomération", "value": 2}],
     "atm": [
         {"label": "Normale", "value": 1},
         {"label": "Pluie légère", "value": 2},
@@ -79,7 +73,7 @@ OPTIONS = {
         {"label": "automne", "value": "automne"},
         {"label": "hiver", "value": "hiver"},
         {"label": "printemps", "value": "printemps"},
-    ]
+    ],
 }
 
 GRAVITE_LABELS = {
@@ -87,7 +81,4 @@ GRAVITE_LABELS = {
     1: "🔴 Accident avec blessés graves/mortel",
 }
 
-GRAVITE_COLORS = {
-    0: "success",
-    1: "warning"
-}
+GRAVITE_COLORS = {0: "success", 1: "warning"}

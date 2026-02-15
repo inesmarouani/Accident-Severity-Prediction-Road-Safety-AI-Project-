@@ -23,7 +23,7 @@ services:
      # context: ./back
       #dockerfile: Dockerfile
     container_name: accident_severity_back
-    image: inesmarouani/accident-back:latest
+    image: ghcr.io/inesmarouani/accident-back:develop  # ← Image GHCR
     ports:
       - "8000:8000"
     environment:
@@ -39,7 +39,7 @@ services:
       - ./back/data:/code/app   # dossier partagé entre hôte et conteneur
       - ./back/models_trained:/code/models_trained
       # Volume pour uv cache (optionnel, améliore les rebuild)
-      - uv-cache:/root/.cache/uv    
+      - uv-cache:/root/.cache/uv
     networks:
       - app-network
 
@@ -48,7 +48,7 @@ services:
      # context: ./front
       #dockerfile: Dockerfile
     container_name: accident_severity_front
-    image: inesmarouani/accident-front:latest
+    image: ghcr.io/inesmarouani/accident-front:develop  # ← Image GHCR
     ports:
       - "8050:8050"
     environment:

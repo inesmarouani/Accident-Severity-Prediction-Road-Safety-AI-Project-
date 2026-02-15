@@ -1,11 +1,11 @@
-from typing import List
 import logging
+
 from fastapi import APIRouter, HTTPException, status
 
-from app.api.deps import SessionDep, PaginationDep
-from app.schemas.accident import AccidentInput
+from app.api.deps import PaginationDep, SessionDep
 from app.models.accident import Accident
 from app.repositories.accident_repository import AccidentRepository
+from app.schemas.accident import AccidentInput
 from app.services.accident_service import AccidentService
 
 logger = logging.getLogger(__name__)
@@ -16,21 +16,23 @@ router = APIRouter()
 def predict_accident(data: AccidentInput, session: SessionDep):
     """Prédit la gravité d'un accident et le sauvegarde en base"""
     logger.info("📥 Nouvelle requête de prédiction")
-    
+
     try:
         repository = AccidentRepository(session)
         service = AccidentService(repository)
         result = service.predict_and_save(data)
-        
-        logger.info(f"✅ Prédiction - ID: {result.id}, Gravité: {result.gravite_predite}")
+
+        logger.info(
+            f"✅ Prédiction - ID: {result.id}, Gravité: {result.gravite_predite}"
+        )
         return result
-        
+
     except Exception as e:
         logger.error(f"❌ Erreur: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e)) from e
 
 
-@router.get("/", response_model=List[Accident])
+@router.get("/", response_model=list[Accident])
 def get_accidents(session: SessionDep, pagination: PaginationDep):
     """Récupère la liste des accidents"""
     repository = AccidentRepository(session)
