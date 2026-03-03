@@ -1,28 +1,52 @@
-name: Sync Develop with Main
-
+# Synchronise develop avec main après chaque release
+name: Sync Main to Develop
 on:
-  push:
+  workflow_run:
+    workflows: ["Semantic Release"]
+    types: [completed]
     branches:
       - main
-
+permissions:
+  contents: write
+  pull-requests: write
 jobs:
   sync:
-    name: 🔄 Sync develop with main
+    name: Sync main to develop
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - name: Checkout code
+      - name: Generate App Token
+        id: get_token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.PRIVATE_KEY }}
+      - name: Checkout
         uses: actions/checkout@v4
         with:
+          token: ${{ steps.get_token.outputs.token }}
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Sync develop with main
+      - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Sync main into develop
+        run: |
+          git fetch origin main
+          git fetch origin develop
           git checkout develop
-          git merge main --no-edit
+          git pull origin develop
+          if git merge origin/main --no-edit -m "chore: sync main to develop after release"; then
+            echo "✅ Merge réussi sans conflit"
+          else
+            echo "⚠️ Conflits détectés, résolution automatique..."
+            git checkout --theirs CHANGELOG.md pyproject.toml
+            git add CHANGELOG.md pyproject.toml
+            if git diff --name-only --diff-filter=U | grep -v -E '(CHANGELOG.md|pyproject.toml)'; then
+              echo "❌ Conflits non résolvables automatiquement"
+              exit 1
+            fi
+            git commit --no-edit
+            echo "✅ Conflits résolus automatiquement"
+          fi
           git push origin develop
