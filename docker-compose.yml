@@ -4,15 +4,15 @@ services:
     image: postgres:13
     container_name: accident_severity_db
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: accidents
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U user -d accidents"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -27,11 +27,11 @@ services:
     ports:
       - "8000:8000"
     environment:
-      DB_USER: user
-      DB_PASSWORD: password
-      DB_NAME: accidents
-      DB_HOST: db
-      DB_PORT: 5432
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
     depends_on:
       db:
         condition: service_healthy
@@ -47,12 +47,12 @@ services:
       context: ./front
       dockerfile: Dockerfile
     container_name: accident_severity_front
-    image: ghcr.io/inesmarouani/accident-front:develop  # ← Image GHCR
+    #image: ghcr.io/inesmarouani/accident-front:develop  # ← Image GHCR
     ports:
       - "8050:8050"
     environment:
-      - API_BASE_URL=http://back:8000
-      - DEBUG=False
+      - API_BASE_URL=${API_BASE_URL}
+      - DEBUG=${DEBUG}
     depends_on:
       - back
     volumes:
@@ -87,8 +87,8 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=changeme
+      - GF_SECURITY_ADMIN_USER=${GF_SECURITY_ADMIN_USER}
+      - GF_SECURITY_ADMIN_PASSWORD=${GF_SECURITY_ADMIN_PASSWORD}
     volumes:
       - grafana-data:/var/lib/grafana
       - ./fastapi-dashboard.json:/etc/grafana/provisioning/dashboards/fastapi-dashboard.json
