@@ -12,6 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
       - uses: pre-commit/action@v3.0.0
 
   lint:
@@ -27,6 +29,11 @@ jobs:
           enable-cache: true
 
       - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Python install with uv
         run: uv python install
 
       - name: Install dependencies
@@ -54,6 +61,11 @@ jobs:
           enable-cache: true
 
       - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Python install with uv
         run: uv python install
 
       - name: Install dependencies
@@ -77,6 +89,11 @@ jobs:
           enable-cache: true
 
       - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Python install with uv
         run: uv python install
 
       - name: Install dependencies
@@ -120,6 +137,11 @@ jobs:
           enable-cache: true
 
       - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Python install with uv
         run: uv python install
 
       - name: Install dependencies
