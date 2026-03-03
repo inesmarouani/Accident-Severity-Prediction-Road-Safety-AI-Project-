@@ -1,6 +1,6 @@
 [project]
 name = "back"
-version = "1.0.0"
+version = "1.1.1-dev.1"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -102,6 +102,8 @@ version_variables = []
 build_command = "uv build"
 dist_path = "dist/"
 upload_to_vcs_release = true
+tag_format = "v{version}"      # ← AJOUT
+commit_message = "chore(release): bump version to {version}"  # ← AJOUT
 
 [tool.semantic_release.branches.main]
 match = "main"
@@ -126,6 +128,7 @@ patch_tags = ["fix", "perf"]
 
 [tool.semantic_release.remote]
 type = "github"
+token = "${GH_TOKEN}"
 ignore_token_for_push = false
 
 [tool.semantic_release.publish]

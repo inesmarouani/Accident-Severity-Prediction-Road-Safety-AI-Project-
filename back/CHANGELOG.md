@@ -2,37 +2,32 @@
 
 <!-- version list -->
 
-## v1.0.0 (2026-02-15)
+## v1.1.1-dev.1 (2026-03-03)
 
 ### Bug Fixes
 
-- **ci**: Correct Docker tags format for pull requests
-  ([`e5ad18e`](https://github.com/inesmarouani/Accident-Severity-Prediction-Road-Safety-AI-Project-/commit/e5ad18ece98813b84407221ad20d5c81c431e8ad))
+- **ci**: Add GH_TOKEN to semantic-release remote config
+  ([`09a5c8e`](https://github.com/inesmarouani/Accident-Severity-Prediction-Road-Safety-AI-Project-/commit/09a5c8ec6975ec3c2957fcb3274c6008184df7af))
 
-- **ci**: Correct typos in semantic-release workflow (GH_TOKEN and command)
-  ([`cbdf395`](https://github.com/inesmarouani/Accident-Severity-Prediction-Road-Safety-AI-Project-/commit/cbdf39577793edab777bd26424a09db5bf64d9bb))
+- **ci**: Use GitHub App token to bypass branch protection
+  ([`deeca80`](https://github.com/inesmarouani/Accident-Severity-Prediction-Road-Safety-AI-Project-/commit/deeca802f6ddaa8b8edc8a17070735bbea67b75f))
 
-- **ci**: Use directory instead of root_options for semantic-release
-  ([`69a07a0`](https://github.com/inesmarouani/Accident-Severity-Prediction-Road-Safety-AI-Project-/commit/69a07a0157e12a8f389504dd9b999f7a832bd5b8))
+- **docker**: Fix multi-stage builds and module resolution
+  ([`b274d9b`](https://github.com/inesmarouani/Accident-Severity-Prediction-Road-Safety-AI-Project-/commit/b274d9ba0715cc02228358a0ef4fd4abb8e73113))
 
-- **ci**: Use working-directory with uv run instead of action directory
-  ([`366e0b0`](https://github.com/inesmarouani/Accident-Severity-Prediction-Road-Safety-AI-Project-/commit/366e0b0feaa7325d7a2b9aa5ab0b989efb396c9a))
-
-- **database**: Improve connection pool handling
-  ([`0cd6c01`](https://github.com/inesmarouani/Accident-Severity-Prediction-Road-Safety-AI-Project-/commit/0cd6c011a726aa1a515e1257259c5f68e2eac82e))
+- **docker**: Improve security and project structure
+  ([`00cb915`](https://github.com/inesmarouani/Accident-Severity-Prediction-Road-Safety-AI-Project-/commit/00cb915edfd3829e000a21ca01e5e985d8c728da))
 
 ### Continuous Integration
 
-- Add semantic release workflow
-  ([`f585601`](https://github.com/inesmarouani/Accident-Severity-Prediction-Road-Safety-AI-Project-/commit/f58560131aa9418d0d058cb80756feff9dbc575d))
+- Trigger semantic release
+  ([`65af6ac`](https://github.com/inesmarouani/Accident-Severity-Prediction-Road-Safety-AI-Project-/commit/65af6ac77fc5c1d2eb0a49392365719cc5bc7bf5))
 
-### Features
+- Trigger semantic release
+  ([`af1cda8`](https://github.com/inesmarouani/Accident-Severity-Prediction-Road-Safety-AI-Project-/commit/af1cda8863c837939519883796a88ed56ef47843))
 
-- **api**: Add filtering
-  ([`1a57efe`](https://github.com/inesmarouani/Accident-Severity-Prediction-Road-Safety-AI-Project-/commit/1a57efece8fa18c9fcc8c581061bf147e8b46112))
-
-- **items**: Add pagination
-  ([`7802bb7`](https://github.com/inesmarouani/Accident-Severity-Prediction-Road-Safety-AI-Project-/commit/7802bb71444c225f3540ad3b000f2221d6d788f6))
+- Trigger semantic release with bypass
+  ([`48d65ad`](https://github.com/inesmarouani/Accident-Severity-Prediction-Road-Safety-AI-Project-/commit/48d65ad8bf9018d2e6bef04590fbfd3d87c4f133))
 
 
 ## v1.0.0-dev.1 (2026-02-15)
