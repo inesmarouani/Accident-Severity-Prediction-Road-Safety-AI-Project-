@@ -25,7 +25,8 @@ FROM python:3.12-slim AS runtime
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    PATH="/app/.venv/bin:$PATH"
+    PATH="/app/.venv/bin:$PATH" \
+    PYTHONPATH=/app
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
@@ -46,4 +47,4 @@ EXPOSE 8050
 HEALTHCHECK --interval=30s --timeout=5s \
   CMD curl -f http://localhost:8050 || exit 1
 
-CMD ["python", "src/app.py"]
+CMD ["python", "-m", "src.app"]
