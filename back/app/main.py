@@ -1,16 +1,25 @@
+import time
+
 from fastapi import FastAPI, Request, status
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
+from prometheus_fastapi_instrumentator import Instrumentator
 
 from app.api.v1.api import api_router
 from app.core.config import settings
 from app.core.logging import logger, setup_logging
 from app.database import create_db_and_tables
+from app.metrics import (
+    app_uptime_seconds,
+)
 
 # Configurer le logging
 setup_logging()
 
 app = FastAPI(title=settings.PROJECT_NAME)
+
+Instrumentator().instrument(app).expose(app)
+APP_START_TIME = time.time()
 
 
 # Event handlers
@@ -40,6 +49,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 # Routes
 @app.get("/")
 def root():
+    app_uptime_seconds.set(time.time() - APP_START_TIME)
     return {"status": "API Accident Severity opérationnelle"}
 
 
