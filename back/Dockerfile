@@ -34,6 +34,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PATH="/app/.venv/bin:$PATH"
 
+
 # Dépendances runtime uniquement (pas build-essential)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq-dev \
