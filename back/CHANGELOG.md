@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.2.0-dev.1 (2026-03-04)
+
+### Features
+
+- **testing**: Add Locust stress testing with 2 user profiles
+  ([`b35f2df`](https://github.com/inesmarouani/Accident-Severity-Prediction-Road-Safety-AI-Project-/commit/b35f2df9c23be65fd2a3e483e78238beb6fc7898))
+
+
 ## v1.1.1-dev.1 (2026-03-03)
 
 ### Bug Fixes
